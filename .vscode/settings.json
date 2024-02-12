@@ -1,0 +1,12 @@
+{
+    "objectscript.conn": {
+        "server": "iris-iscdev-nl",
+        "ns": "CONNECTORS",
+        "username": "_system",
+        "links": {
+            "SOAP Wizard": "${serverUrl}/isc/studio/templates/%25ZEN.Template.AddInWizard.SOAPWizard.cls?Namespace=${namespace}${serverAuth}"
+        },
+        "active": true
+    },
+    "objectscript.showExplorer": true
+}
