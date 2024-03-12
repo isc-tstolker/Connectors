@@ -9,7 +9,7 @@ ClassMethod DeleteAll()
 }
 
 /// - Downloaded the swagger-spec from https://test-agb-api.vektis.nl/v2/swagger
-/// - Shortened the definitions by removing the "Vektis.AGB.WebAPI.Raadplegen.DataContracts." prefix
+/// - Shortened the definition namess by removing the "Vektis.AGB.WebAPI.Raadplegen.DataContracts." prefix
 /// - Manually corrected all duplicate instances of operationId
 /// - Converted using post to https://converter.swagger.io/#/Converter/convertByContent
 /// - Removed all Authorization header parameters
