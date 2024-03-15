@@ -1,4 +1,4 @@
-/// Fitbit API Endpoint for authorization and Notifications
+/// Fitbit API Endpoint for Notifications
 Class CONNECTORSPKG.Fitbit.Api.v1.spec Extends %REST.Spec [ ProcedureBlock ]
 {
 
@@ -19,7 +19,7 @@ XData OpenAPI [ MimeType = application/json ]
 {
   "swagger": "2.0",
   "info": {
-    "title": "Fitbit Authorization and Notification API",
+    "title": "Fitbit Notification API",
     "version": "1.0"
   },
   "host": "iris.dev.iscdev.nl",
