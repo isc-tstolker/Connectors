@@ -12,7 +12,7 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// Log entry date in the format yyyy-MM-dd.
-Property querydate As %Date;
+Property querydate As %String;
 
 /// Body fat in the format of X.XX in the unit system that corresponds to the Accept-Language header provided.
 Property queryfat As %Integer;

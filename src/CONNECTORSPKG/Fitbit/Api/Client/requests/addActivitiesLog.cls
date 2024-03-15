@@ -18,7 +18,7 @@ Property queryactivityId As %Integer;
 Property queryactivityName As %String(MAXLEN = "");
 
 /// Log entry date in the format yyyy-MM-dd.
-Property querydate As %Date;
+Property querydate As %String;
 
 /// Distance is required for logging directory activity in the format X.XX and in the selected distanceUnit.
 Property querydistance As %Integer;

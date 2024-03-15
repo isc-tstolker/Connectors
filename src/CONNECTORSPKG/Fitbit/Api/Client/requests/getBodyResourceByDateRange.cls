@@ -12,10 +12,10 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The range start date in the format yyyy-MM-dd or today.
-Property pathbasedate As %Date;
+Property pathbasedate As %String;
 
 /// The end date of the range.
-Property pathenddate As %Date;
+Property pathenddate As %String;
 
 /// The resource path, which incudes the bmi, fat, or weight options.
 Property pathresourcepath As %String(MAXLEN = "");

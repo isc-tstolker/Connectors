@@ -15,7 +15,7 @@ Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 Property pathbasedate As %String(MAXLEN = "");
 
 /// The end date of the range.
-Property pathenddate As %Date;
+Property pathenddate As %String;
 
 /// Load %Net.HttpRequest with this property object.
 Method LoadHttpRequestObject(ByRef httpRequest As %Net.HttpRequest) As %Status

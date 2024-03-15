@@ -21,7 +21,7 @@ Property querybrandName As %String(MAXLEN = "");
 Property querycalories As %Integer;
 
 /// Log entry date in the format yyyy-MM-dd.
-Property querydate As %Date;
+Property querydate As %String;
 
 /// The `true` value will add the food to the user's favorites after creating the log entry; while the `false` value will not. Valid only with foodId value.
 Property queryfavorite As %Boolean;

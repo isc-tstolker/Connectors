@@ -12,7 +12,7 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The date in the format yyyy-MM-dd or today
-Property pathdate As %Date;
+Property pathdate As %String;
 
 /// The range for which data will be returned. **Supported:** 1d | 7d | 30d | 1w | 1m | 3m | 6m | 1y
 Property pathperiod As %String(MAXLEN = "");

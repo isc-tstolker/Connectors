@@ -15,7 +15,7 @@ Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 Property queryamount As %Integer;
 
 /// The date of records to be returned in the format yyyy-MM-dd.
-Property querydate As %Date;
+Property querydate As %String;
 
 /// Water measurement unit; `ml`, `fl oz`, or `cup`.
 Property queryunit As %String(MAXLEN = "");

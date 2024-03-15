@@ -15,13 +15,13 @@ Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 Property pathdetaillevel As %String(MAXLEN = "");
 
 /// The date in the format yyyy-MM-dd or today
-Property pathenddate As %Date;
+Property pathenddate As %String;
 
 /// The end of the period in the format HH:mm.
 Property pathendtime As %String(MAXLEN = "");
 
 /// The date in the format yyyy-MM-dd or today
-Property pathstartdate As %Date;
+Property pathstartdate As %String;
 
 /// The start of the period in the format HH:mm.
 Property pathstarttime As %String(MAXLEN = "");

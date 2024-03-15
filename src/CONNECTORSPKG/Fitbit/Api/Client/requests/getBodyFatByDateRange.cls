@@ -12,10 +12,10 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The range start date in the format yyyy-MM-dd or today.
-Property pathbasedate As %Date;
+Property pathbasedate As %String;
 
 /// The end date of the range.
-Property pathenddate As %Date;
+Property pathenddate As %String;
 
 /// Load %Net.HttpRequest with this property object.
 Method LoadHttpRequestObject(ByRef httpRequest As %Net.HttpRequest) As %Status

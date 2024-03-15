@@ -12,7 +12,7 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// Log entry in the format yyyy-MM-dd.
-Property querydate As %Date;
+Property querydate As %String;
 
 /// Duration in milliseconds.
 Property queryduration As %Integer;

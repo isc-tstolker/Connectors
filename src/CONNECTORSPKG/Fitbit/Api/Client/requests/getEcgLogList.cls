@@ -12,10 +12,10 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The date in the format yyyy-MM-ddTHH:mm:ss.
-Property queryafterDate As %Date;
+Property queryafterDate As %String;
 
 /// The date in the format yyyy-MM-ddTHH:mm:ss. Only yyyy-MM-dd is required. Either beforeDate or afterDate should be specified.
-Property querybeforeDate As %Date;
+Property querybeforeDate As %String;
 
 /// The maximum number of entries returned (maximum;10).
 Property querylimit As %Integer;
