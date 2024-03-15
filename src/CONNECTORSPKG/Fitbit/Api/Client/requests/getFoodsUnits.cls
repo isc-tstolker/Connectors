@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getFoodsUnits Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getFoodsUnits Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";

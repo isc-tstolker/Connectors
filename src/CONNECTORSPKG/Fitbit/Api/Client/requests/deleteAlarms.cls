@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.deleteAlarms Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.deleteAlarms Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "delete";

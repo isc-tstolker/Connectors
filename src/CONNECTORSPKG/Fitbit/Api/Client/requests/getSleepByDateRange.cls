@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getSleepByDateRange Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getSleepByDateRange Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";
@@ -12,10 +12,10 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The date of records to be returned. In the format yyyy-MM-dd.
-Property pathbasedate As %String;
+Property pathbasedate As %String(MAXLEN = "");
 
 /// The date of records to be returned. In the format yyyy-MM-dd.
-Property pathenddate As %String;
+Property pathenddate As %String(MAXLEN = "");
 
 /// Load %Net.HttpRequest with this property object.
 Method LoadHttpRequestObject(ByRef httpRequest As %Net.HttpRequest) As %Status

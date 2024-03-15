@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getBodyResourceByDateRange Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getBodyResourceByDateRange Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";
@@ -12,10 +12,10 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The range start date in the format yyyy-MM-dd or today.
-Property pathbasedate As %String;
+Property pathbasedate As %String(MAXLEN = "");
 
 /// The end date of the range.
-Property pathenddate As %String;
+Property pathenddate As %String(MAXLEN = "");
 
 /// The resource path, which incudes the bmi, fat, or weight options.
 Property pathresourcepath As %String(MAXLEN = "");

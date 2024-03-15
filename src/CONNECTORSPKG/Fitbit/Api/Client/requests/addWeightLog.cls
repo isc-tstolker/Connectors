@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.addWeightLog Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.addWeightLog Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "post";
@@ -12,7 +12,7 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// Log entry date in the format yyyy-MM-dd.
-Property querydate As %String;
+Property querydate As %String(MAXLEN = "");
 
 /// Time of the measurement; hours and minutes in the format of HH:mm:ss, which is set to the last second of the day if not provided.
 Property querytime As %String(MAXLEN = "");

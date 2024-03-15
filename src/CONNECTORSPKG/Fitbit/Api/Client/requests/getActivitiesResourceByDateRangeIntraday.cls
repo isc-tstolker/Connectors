@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getActivitiesResourceByDateRangeIntraday Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getActivitiesResourceByDateRangeIntraday Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";
@@ -12,13 +12,13 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The date in the format yyyy-MM-dd or today.
-Property pathbasedate As %String;
+Property pathbasedate As %String(MAXLEN = "");
 
 /// Number of data points to include. Either 1min or 15min. Optional.
 Property pathdetaillevel As %String(MAXLEN = "");
 
 /// The date in the format yyyy-MM-dd or today.
-Property pathenddate As %String;
+Property pathenddate As %String(MAXLEN = "");
 
 /// The resource-path; see options in the Resource Path Options section in the full documentation.
 Property pathresourcepath As %String(MAXLEN = "");

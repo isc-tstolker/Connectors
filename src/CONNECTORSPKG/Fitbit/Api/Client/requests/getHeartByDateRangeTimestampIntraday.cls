@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getHeartByDateRangeTimestampIntraday Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getHeartByDateRangeTimestampIntraday Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";
@@ -12,13 +12,13 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The date in the format of yyyy-MM-dd or today.
-Property pathdate As %String;
+Property pathdate As %String(MAXLEN = "");
 
 /// The number of data points to include either 1sec, 1min, 5min or 15min.
 Property pathdetaillevel As %String(MAXLEN = "");
 
 /// The end date in the format of yyyy-MM-dd or today.
-Property pathenddate As %String;
+Property pathenddate As %String(MAXLEN = "");
 
 /// The end time of the period in the format of HH:mm.
 Property pathendtime As %String(MAXLEN = "");

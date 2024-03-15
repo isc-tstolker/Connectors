@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getBreathingRateSummaryByInterval Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getBreathingRateSummaryByInterval Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";
@@ -12,10 +12,10 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The date in the format of yyyy-MM-dd or today.
-Property pathendDate As %String;
+Property pathendDate As %String(MAXLEN = "");
 
 /// The date in the format of yyyy-MM-dd or today.
-Property pathstartDate As %String;
+Property pathstartDate As %String(MAXLEN = "");
 
 /// Load %Net.HttpRequest with this property object.
 Method LoadHttpRequestObject(ByRef httpRequest As %Net.HttpRequest) As %Status

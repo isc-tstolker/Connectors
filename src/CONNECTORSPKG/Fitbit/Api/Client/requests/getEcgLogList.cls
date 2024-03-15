@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getEcgLogList Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getEcgLogList Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";
@@ -12,10 +12,10 @@ Property %ContentType As %String(MAXLEN = "");
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// The date in the format yyyy-MM-ddTHH:mm:ss.
-Property queryafterDate As %String;
+Property queryafterDate As %String(MAXLEN = "");
 
 /// The date in the format yyyy-MM-ddTHH:mm:ss. Only yyyy-MM-dd is required. Either beforeDate or afterDate should be specified.
-Property querybeforeDate As %String;
+Property querybeforeDate As %String(MAXLEN = "");
 
 /// The maximum number of entries returned (maximum;10).
 Property querylimit As %Integer;

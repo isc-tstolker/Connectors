@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getAZMByIntervalTimeSeriesIntraday Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getAZMByIntervalTimeSeriesIntraday Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";
@@ -15,13 +15,13 @@ Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 Property pathdetaillevel As %String(MAXLEN = "");
 
 /// The date in the format yyyy-MM-dd or today
-Property pathenddate As %String;
+Property pathenddate As %String(MAXLEN = "");
 
 /// The end of the period in the format HH:mm.
 Property pathendtime As %String(MAXLEN = "");
 
 /// The date in the format yyyy-MM-dd or today
-Property pathstartdate As %String;
+Property pathstartdate As %String(MAXLEN = "");
 
 /// The start of the period in the format HH:mm.
 Property pathstarttime As %String(MAXLEN = "");

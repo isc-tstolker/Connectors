@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.addFoodsLog Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.addFoodsLog Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "post";
@@ -21,7 +21,7 @@ Property querybrandName As %String(MAXLEN = "");
 Property querycalories As %Integer;
 
 /// Log entry date in the format yyyy-MM-dd.
-Property querydate As %String;
+Property querydate As %String(MAXLEN = "");
 
 /// The `true` value will add the food to the user's favorites after creating the log entry; while the `false` value will not. Valid only with foodId value.
 Property queryfavorite As %Boolean;

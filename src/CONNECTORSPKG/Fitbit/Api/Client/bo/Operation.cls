@@ -985,13 +985,12 @@ Method updateWeightGoal(requestMessage As CONNECTORSPKG.Fitbit.Api.Client.reques
 }
 
 /// Common request handler
-Method zzHandleRequest(requestMessage As Ens.Request, name As %String, method As %String, responseMessage As CONNECTORSPKG.Fitbit.Api.Client.responses.GenericResponse) As %Status
+Method zzHandleRequest(requestMessage As CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest, name As %String, method As %String, responseMessage As CONNECTORSPKG.Fitbit.Api.Client.responses.GenericResponse) As %Status
 {
 	set sc = $$$OK, pHttpRequestIn = ##class(%Net.HttpRequest).%New()
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(pHttpRequestIn))
 
-	set userId = "4D8CR2" 	// TBD: Add GenericRequestMessage!
-	do pHttpRequestIn.AuthorizationSet("Bearer " _ ##class(CONNECTORSPKG.Fitbit.DB.UserTokens).GetAccessTokenForUser(userId))
+	do pHttpRequestIn.AuthorizationSet("Bearer " _ ##class(CONNECTORSPKG.Fitbit.DB.UserTokens).GetAccessTokenForUser(requestMessage.UserId))
 
 	set sc = ..Adapter.SendFormDataArray(.pHttpResponse, method, pHttpRequestIn, , , ..Adapter.URL _ requestMessage.%URL)
 

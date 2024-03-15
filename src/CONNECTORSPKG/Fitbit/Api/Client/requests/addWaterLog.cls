@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.addWaterLog Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.addWaterLog Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "post";
@@ -15,7 +15,7 @@ Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 Property queryamount As %Integer;
 
 /// The date of records to be returned in the format yyyy-MM-dd.
-Property querydate As %String;
+Property querydate As %String(MAXLEN = "");
 
 /// Water measurement unit; `ml`, `fl oz`, or `cup`.
 Property queryunit As %String(MAXLEN = "");

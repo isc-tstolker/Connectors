@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.getHeartByDateRange Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.getHeartByDateRange Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";
@@ -15,7 +15,7 @@ Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 Property pathbasedate As %String(MAXLEN = "");
 
 /// The end date of the range.
-Property pathenddate As %String;
+Property pathenddate As %String(MAXLEN = "");
 
 /// Load %Net.HttpRequest with this property object.
 Method LoadHttpRequestObject(ByRef httpRequest As %Net.HttpRequest) As %Status

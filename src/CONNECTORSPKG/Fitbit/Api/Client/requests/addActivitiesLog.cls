@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.Fitbit.Api.Client.requests.addActivitiesLog Extends Ens.Request [ ProcedureBlock ]
+Class CONNECTORSPKG.Fitbit.Api.Client.requests.addActivitiesLog Extends CONNECTORSPKG.Fitbit.Api.Client.requests.GenericRequest [ ProcedureBlock ]
 {
 
 Parameter METHOD = "post";
@@ -18,7 +18,7 @@ Property queryactivityId As %Integer;
 Property queryactivityName As %String(MAXLEN = "");
 
 /// Log entry date in the format yyyy-MM-dd.
-Property querydate As %String;
+Property querydate As %String(MAXLEN = "");
 
 /// Distance is required for logging directory activity in the format X.XX and in the selected distanceUnit.
 Property querydistance As %Integer;
