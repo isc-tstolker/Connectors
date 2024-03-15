@@ -2,6 +2,16 @@
 Class CONNECTORSPKG.Fitbit.Api.Client.bo.Operation Extends Ens.BusinessOperation [ Inheritance = left, ProcedureBlock ]
 {
 
+Property OAuth2ClientID As %String(MAXLEN = 50) [ InitialExpression = "227P83" ];
+
+Property OAuth2ClientSecret As %String(MAXLEN = 50) [ InitialExpression = "5a68a11c251c8e313bae0783005237da" ];
+
+Property RedirectUrl As %String(MAXLEN = 100) [ InitialExpression = "https://iris.dev.iscdev.nl/csp/healthshare/connectors/CONNECTORSPKG.Fitbit.OAuth2Redirect.cls" ];
+
+Property DefaultScope As %String(MAXLEN = "") [ InitialExpression = "activity cardio_fitness electrocardiogram heartrate location nutrition oxygen_saturation profile respiratory_rate settings sleep social temperature weight" ];
+
+Parameter SETTINGS = "OAuth2ClientID:Fitbit,OAuth2ClientSecret:Fitbit,RedirectUrl:Fitbit,DefaultScope:Fitbit";
+
 Parameter ADAPTER = "EnsLib.HTTP.OutboundAdapter";
 
 Property Adapter As EnsLib.HTTP.OutboundAdapter;
@@ -979,6 +989,10 @@ Method zzHandleRequest(requestMessage As Ens.Request, name As %String, method As
 {
 	set sc = $$$OK, pHttpRequestIn = ##class(%Net.HttpRequest).%New()
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(pHttpRequestIn))
+
+	set userId = "4D8CR2" 	// TBD: Add GenericRequestMessage!
+	do pHttpRequestIn.AuthorizationSet("Bearer " _ ##class(CONNECTORSPKG.Fitbit.DB.UserTokens).GetAccessTokenForUser(userId))
+
 	set sc = ..Adapter.SendFormDataArray(.pHttpResponse, method, pHttpRequestIn, , , ..Adapter.URL _ requestMessage.%URL)
 
 	if $$$ISERR(sc) && ($SYSTEM.Status.GetErrorCodes(sc) '= $$$EnsErrHTTPStatus) {
