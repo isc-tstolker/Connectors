@@ -1,4 +1,4 @@
-/// Nuts connector - REST API specification
+/// .weel-known API for OneDrive
 Class CONNECTORSPKG.API.v1.spec Extends %REST.Spec [ ProcedureBlock ]
 {
 
@@ -19,7 +19,7 @@ XData OpenAPI [ MimeType = application/json ]
 {
   "swagger": "2.0",
   "info": {
-    "title": "Connectors API",
+    "title": "OneDrive .well-known API",
     "version": "1.0"
   },
   "host": "iris.dev.iscdev.nl",
