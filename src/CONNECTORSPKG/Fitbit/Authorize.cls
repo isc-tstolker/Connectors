@@ -2,19 +2,6 @@
 Class CONNECTORSPKG.Fitbit.Authorize Extends %CSP.Page
 {
 
-/// Get Config Value from production
-ClassMethod GetConfigValue(name As %String, doEncode As %Boolean = 1) As %String
-{
-	set value = ##class(Ens.Director).GetItemSettingValue("||Fitbit", "Host", name, .sc)
-
-	if (doEncode)
-	{
-		return $$$URLENCODE(value)
-	}
-
-	return value
-}
-
 /// https://iris.dev.iscdev.nl/csp/healthshare/connectors/CONNECTORSPKG.Fitbit.Authorize.cls
 ClassMethod OnPage() As %Status [ ServerOnly = 1 ]
 {
@@ -80,11 +67,11 @@ ClassMethod OnPreHTTP() As %Boolean [ ServerOnly = 1 ]
 			do %session.Set("CodeVerifier", codeVerifier)  // Keep in session
 
 			set %response.Redirect = "https://www.fitbit.com/oauth2/authorize?response_type=code" _
-									"&client_id=" _  ..GetConfigValue("OAuth2ClientID") _
-									"&redirect_uri=" _ ..GetConfigValue("RedirectUrl", 0) _
+									"&client_id=" _  ##class(CONNECTORSPKG.Fitbit.Api.Client.bo.Operation).GetConfigValue("OAuth2ClientID") _
+									"&redirect_uri=" _ ##class(CONNECTORSPKG.Fitbit.Api.Client.bo.Operation).GetConfigValue("RedirectUrl", 0) _
 									"&code_challenge=" _ ##class(%OAuth2.Utils).Base64UrlEncode($System.Encryption.SHAHash(256, codeVerifier)) _
 									"&code_challenge_method=S256" _
-									"&scope=" _ ..GetConfigValue("DefaultScope") _
+									"&scope=" _ ##class(CONNECTORSPKG.Fitbit.Api.Client.bo.Operation).GetConfigValue("DefaultScope") _
 									"&state=" _ "sate"
 
 		}

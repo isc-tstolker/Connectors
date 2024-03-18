@@ -2,12 +2,6 @@
 Class CONNECTORSPKG.Fitbit.OAuth2Redirect Extends %CSP.Page
 {
 
-/// Get Config value from production
-ClassMethod GetConfigValue(name As %String) As %String
-{
-	return $$$URLENCODE(##class(Ens.Director).GetItemSettingValue("||Fitbit", "Host", name, .sc))
-}
-
 /// https://iris.dev.iscdev.nl/csp/healthshare/connectors/CONNECTORSPKG.Fitbit.OAuth2Redirect.cls
 /// The code verifier is created before Authorize and kept in the %session for use in the call to the token endpoint
 ClassMethod OnPage() As %Status
@@ -223,8 +217,8 @@ ClassMethod GetToken(code As %String, Output sc As %Status) As %DynamicObject
 	set request.FollowRedirect = 1
 	do request.InsertFormData("grant_type", "authorization_code")
 	do request.InsertFormData("code", code)
-	do request.InsertFormData("client_id", ##class(CONNECTORSPKG.Fitbit.Authorize).GetConfigValue("OAuth2ClientID"))
-	do request.InsertFormData("redirect_uri", ##class(CONNECTORSPKG.Fitbit.Authorize).GetConfigValue("RedirectUrl", 0))
+	do request.InsertFormData("client_id", ##class(CONNECTORSPKG.Fitbit.Api.Client.bo.Operation).GetConfigValue("OAuth2ClientID"))
+	do request.InsertFormData("redirect_uri", ##class(CONNECTORSPKG.Fitbit.Api.Client.bo.Operation).GetConfigValue("RedirectUrl", 0))
 	do request.InsertFormData("expires_in", "28800")
 	do request.InsertFormData("code_verifier", %session.Get("CodeVerifier"))
 	

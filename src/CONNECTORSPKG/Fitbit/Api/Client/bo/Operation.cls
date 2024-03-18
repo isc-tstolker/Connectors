@@ -1,3 +1,5 @@
+Include (%occErrors, %occStatus)
+
 /// Generated Business Operation
 Class CONNECTORSPKG.Fitbit.Api.Client.bo.Operation Extends Ens.BusinessOperation [ Inheritance = left, ProcedureBlock ]
 {
@@ -8,13 +10,79 @@ Property OAuth2ClientSecret As %String(MAXLEN = 50) [ InitialExpression = "5a68a
 
 Property RedirectUrl As %String(MAXLEN = 100) [ InitialExpression = "https://iris.dev.iscdev.nl/csp/healthshare/connectors/CONNECTORSPKG.Fitbit.OAuth2Redirect.cls" ];
 
-Property DefaultScope As %String(MAXLEN = "") [ InitialExpression = "activity cardio_fitness electrocardiogram heartrate location nutrition oxygen_saturation profile respiratory_rate settings sleep social temperature weight" ];
+/// Requested scopes
+Property activity As %Boolean [ InitialExpression = 1 ];
 
-Parameter SETTINGS = "OAuth2ClientID:Fitbit,OAuth2ClientSecret:Fitbit,RedirectUrl:Fitbit,DefaultScope:Fitbit";
+Property "cardio_fitness" As %Boolean [ InitialExpression = 1 ];
+
+Property electrocardiogram As %Boolean [ InitialExpression = 1 ];
+
+Property heartrate As %Boolean [ InitialExpression = 1 ];
+
+Property location As %Boolean [ InitialExpression = 1 ];
+
+Property nutrition As %Boolean [ InitialExpression = 1 ];
+
+Property "oxygen_saturation" As %Boolean [ InitialExpression = 1 ];
+
+Property profile As %Boolean [ InitialExpression = 1 ];
+
+Property "respiratory_rate" As %Boolean [ InitialExpression = 1 ];
+
+Property settings As %Boolean [ InitialExpression = 1 ];
+
+Property sleep As %Boolean [ InitialExpression = 1 ];
+
+Property social As %Boolean [ InitialExpression = 1 ];
+
+Property temperature As %Boolean [ InitialExpression = 1 ];
+
+Property weight As %Boolean [ InitialExpression = 1 ];
+
+Parameter SETTINGS = "OAuth2ClientID:Fitbit,OAuth2ClientSecret:Fitbit,RedirectUrl:Fitbit,activity:Fitbit Requested Scopes,activity:Fitbit Requested Scopes,cardio_fitness:Fitbit Requested Scopes,electrocardiogram:Fitbit Requested Scopes,heartrate:Fitbit Requested Scopes,location:Fitbit Requested Scopes,nutrition:Fitbit Requested Scopes,oxygen_saturation:Fitbit Requested Scopes,profile:Fitbit Requested Scopes,respiratory_rate:Fitbit Requested Scopes,settings:Fitbit Requested Scopes,sleep:Fitbit Requested Scopes,social:Fitbit Requested Scopes,temperature:Fitbit Requested Scopes,weight:Fitbit Requested Scopes";
 
 Parameter ADAPTER = "EnsLib.HTTP.OutboundAdapter";
 
 Property Adapter As EnsLib.HTTP.OutboundAdapter;
+
+/// Get Config Value
+ClassMethod GetConfigValue(name As %String, doEncode As %Boolean = 1) As %String
+{
+	if name = "DefaultScope" // Get fitbut request scopes
+	{
+		set value = ..GetRequestedScopes()
+	}
+	else
+	{
+		set value = ##class(Ens.Director).GetItemSettingValue("||Fitbit", "Host", name, .sc)
+	}
+
+	if (doEncode)
+	{
+		return $$$URLENCODE(value)
+	}
+
+	return value
+}
+
+/// Get Requested Scopes by adding the set items in a string
+ClassMethod GetRequestedScopes() As %Status
+{
+	set totalScopes = "activity cardio_fitness electrocardiogram heartrate location nutrition oxygen_saturation profile respiratory_rate settings sleep social temperature weight"
+	set requestedScopes = ""
+
+	for index = 1:1:$LENGTH(totalScopes, " ")
+	{
+		set scope = $PIECE(totalScopes, " ", index)
+
+		if ##class(Ens.Director).GetItemSettingValue("||Fitbit", "Host", scope, .sc)
+		{
+			set requestedScopes = requestedScopes _ scope _ " "
+		}
+	}
+
+	return $EXTRACT(requestedScopes, 1, *-1)
+}
 
 /// Implement operationId : UpdateBodyFatGoal
 /// post /1/user/-/body/log/fat/goal.json
@@ -990,7 +1058,19 @@ Method zzHandleRequest(requestMessage As CONNECTORSPKG.Fitbit.Api.Client.request
 	set sc = $$$OK, pHttpRequestIn = ##class(%Net.HttpRequest).%New()
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(pHttpRequestIn))
 
-	do pHttpRequestIn.AuthorizationSet("Bearer " _ ##class(CONNECTORSPKG.Fitbit.DB.UserTokens).GetAccessTokenForUser(requestMessage.UserId))
+	if (requestMessage.UserId = "")
+	{
+		return $$$ERROR($$$GeneralError, "No UserId specified")
+	}
+
+	set accessToken = ##class(CONNECTORSPKG.Fitbit.DB.UserTokens).GetAccessTokenForUser(requestMessage.UserId)
+
+	if (accessToken = "")
+	{
+		return $$$ERROR($$$GeneralError, "User " _ requestMessage.UserId _ " has not been authorized yet")
+	}
+
+	do pHttpRequestIn.AuthorizationSet("Bearer " _ accessToken)
 
 	set sc = ..Adapter.SendFormDataArray(.pHttpResponse, method, pHttpRequestIn, , , ..Adapter.URL _ requestMessage.%URL)
 
