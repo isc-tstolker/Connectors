@@ -11,13 +11,32 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="HTTPServer">test-agb-api.vektis.nl</Setting>
     <Setting Target="Adapter" Name="SSLConfig">VektisAGB</Setting>
     <Setting Target="Adapter" Name="HTTPPort">443</Setting>
-    <Setting Target="Adapter" Name="URL">/zorg-ab</Setting>
   </Item>
   <Item Name="ZorgAB" Category="" ClassName="CONNECTORSPKG.ZorgAB.Api.Client.bo.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="HTTPServer">zab.test.aorta-zorg.nl</Setting>
     <Setting Target="Adapter" Name="SSLConfig">Mitz testomgeving</Setting>
     <Setting Target="Adapter" Name="HTTPPort">443</Setting>
     <Setting Target="Adapter" Name="URL">/zab-ro</Setting>
+  </Item>
+  <Item Name="GetIP" Category="" ClassName="CONNECTORSPKG.BO.GenericHTTP.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="SSLConfig">Default</Setting>
+    <Setting Target="Adapter" Name="URL">https://api.ipify.org?format=json</Setting>
+    <Setting Target="Host" Name="AcceptHeader">application/json</Setting>
+  </Item>
+  <Item Name="GetAGBVestiging" Category="" ClassName="CONNECTORSPKG.BO.GenericHTTP.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="SSLConfig">VektisAGB</Setting>
+    <Setting Target="Adapter" Name="URL">https://test-agb-api.vektis.nl/v2/vestigingen/{1}</Setting>
+    <Setting Target="Host" Name="AuthorizationType">Custom</Setting>
+    <Setting Target="Host" Name="CustomAuthorizationHeader">Vektis 057f6201-ea65-4fce-8803-50e3507fb06a</Setting>
+    <Setting Target="Host" Name="TraceOperations">*FULL*</Setting>
+  </Item>
+  <Item Name="GetInPlanningApplicationInfo" Category="" ClassName="CONNECTORSPKG.BO.GenericHTTP.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="SSLConfig">VektisAGB</Setting>
+    <Setting Target="Adapter" Name="URL">https://dicoon.acceptatie.rooster.nl/InPlanningService/rest/api/applicationinfo</Setting>
+    <Setting Target="Host" Name="AuthorizationType">Bearer</Setting>
+    <Setting Target="Host" Name="BearerToken">30SXR2FE2ULASVBRYQPGWBVUWBC7E0RL41P048Q0GTJFNM7LLR</Setting>
+  </Item>
+  <Item Name="HS.Util.Trace.Operations" Category="" ClassName="HS.Util.Trace.Operations" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
 </Production>
 }
