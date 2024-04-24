@@ -39,7 +39,6 @@ Method Handle(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, Output
 
 	$$$HSTRACE("Request after pre-processing", "HttpRequest headers", pHttpRequestIn.ReturnHeaders())
 	
-
 	set sc = ..Adapter.SendFormDataArray(.pHttpResponse, ..HttpMethod, pHttpRequestIn, , , url)
 
 	if $$$ISERR(sc) && ($SYSTEM.Status.GetErrorCodes(sc) '= $$$EnsErrHTTPStatus)

@@ -6,6 +6,7 @@ Class CONNECTORSPKG.BO.GenericHTTP.OutboundAdapter Extends EnsLib.HTTP.OutboundA
 Property URL As %String(MAXLEN = "") [ Required ];
 
 /// Deze Settings worden onderdrukt.
+/// See also https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=EGDV_prog#EGDV_prog_settings 
 Parameter SETTINGS As STRING = "-RegistryID,-HTTPServer,-HTTPPort,SSLConfig,-LocalInterface,-ProxyServer,-ProxyPort,-ProxyHTTPS,-ProxyHttpTunnel,-UseCookies,-ClearCachedResponseCookies,-ProvideMetricsForSAM";
 
 }
