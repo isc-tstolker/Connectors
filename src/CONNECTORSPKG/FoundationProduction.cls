@@ -34,7 +34,8 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="SSLConfig">VektisAGB</Setting>
     <Setting Target="Adapter" Name="URL">https://dicoon.acceptatie.rooster.nl/InPlanningService/rest/api/applicationinfo</Setting>
     <Setting Target="Host" Name="AuthorizationType">Bearer</Setting>
-    <Setting Target="Host" Name="BearerToken">30SXR2FE2ULASVBRYQPGWBVUWBC7E0RL41P048Q0GTJFNM7LLR</Setting>
+    <Setting Target="Adapter" Name="Credentials">InPlanning</Setting>
+    <Setting Target="Host" Name="TraceOperations">*FULL*</Setting>
   </Item>
   <Item Name="HS.Util.Trace.Operations" Category="" ClassName="HS.Util.Trace.Operations" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>

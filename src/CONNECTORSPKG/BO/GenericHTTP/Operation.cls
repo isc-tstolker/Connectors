@@ -10,22 +10,19 @@ Property Adapter As CONNECTORSPKG.BO.GenericHTTP.OutboundAdapter;
 Property HttpMethod As %String(VALUELIST = ",GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS") [ InitialExpression = "GET" ];
 
 /// Accept header
-Property AcceptHeader As %String(MAXLEN = "") [ InitialExpression = "application/json" ];
+Property AcceptHeader As %String [ InitialExpression = "application/json" ];
 
 /// Content Type header
-Property ContentType As %String(MAXLEN = "") [ InitialExpression = "application/json" ];
+Property ContentType As %String [ InitialExpression = "application/json" ];
 
 /// Authorization Type
 Property AuthorizationType As %String(VALUELIST = ",None,Basic,Bearer,Custom") [ InitialExpression = "None" ];
-
-/// Bearer Token
-Property BearerToken As %String(MAXLEN = "");
 
 /// AuthorizationHeader for type = "Custom"
 Property CustomAuthorizationHeader As %String(MAXLEN = "");
 
 /// Deze Settings worden weergegeven.
-Parameter SETTINGS As STRING = "HttpMethod:Basic,AcceptHeader:Basic,ContentType:Basic,AuthorizationType:Basic,BearerToken:Basic,CustomAuthorizationHeader:Basic";
+Parameter SETTINGS As STRING = "HttpMethod:Basic,AcceptHeader:Basic,ContentType:Basic,AuthorizationType:Basic,CustomAuthorizationHeader:Basic";
 
 /// Handle Generic HTTP request
 Method Handle(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, Output responseMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Response) As %Status
@@ -35,7 +32,7 @@ Method Handle(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, Output
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(pHttpRequestIn))
 
 	set url = ..ProcessUrlParams(requestMessage, pHttpRequestIn)
-	do ..ProcessHeaders(requestMessage, pHttpRequestIn)
+	$$$QuitOnError(..ProcessHeaders(requestMessage, pHttpRequestIn))
 
 	$$$HSTRACE("Request after pre-processing", "HttpRequest headers", pHttpRequestIn.ReturnHeaders())
 	
@@ -88,11 +85,23 @@ Method ProcessUrlParams(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Reque
 }
 
 /// Process headers
-Method ProcessHeaders(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, httpRequest As %Net.HttpRequest)
+Method ProcessHeaders(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, httpRequest As %Net.HttpRequest) As %Status
 {
 	if (..AuthorizationType = "Bearer")
-	{		
-		set httpRequest.Authorization = "Bearer" _ ..BearerToken
+	{
+		if (..Adapter.Credentials = "None") || (..Adapter.Credentials = "")
+		{
+			return $$$ERROR($$$GeneralError, "No credentials configured")
+		}
+
+		set credential = ##class(Ens.Config.Credentials).%OpenId(..Adapter.Credentials, .sc)
+
+		if $$$ISERR(sc)
+		{
+			return $$$ADDSC($$$ERROR($$$GeneralError, "Error opening credentials named '" _ ..Adapter.Credentials _ "'"), sc)
+		}
+		
+		set httpRequest.Authorization = "Bearer " _ credential.Password
 	}
 	elseif (..AuthorizationType = "Custom")
 	{		
@@ -113,6 +122,8 @@ Method ProcessHeaders(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request
 			do httpRequest.SetHeader(name, value)
 		}
 	}
+
+	return $$$OK
 }
 
 XData MessageMap
