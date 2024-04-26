@@ -28,6 +28,10 @@ XData OpenAPI [ MimeType = application/json ]
     {
       "name": "VerifiedPublisher",
       "description": "Verified Publisher"
+    },
+    {
+      "name": "HTTPConnectorTest",
+      "description": "HTTP Connector Test"
     }
   ],
   "paths": {
@@ -90,10 +94,100 @@ XData OpenAPI [ MimeType = application/json ]
           }
         }
       }
+    },
+    "/httptest": {
+      "get": {
+        "tags": [ 
+          "HTTPConnectorTest"
+        ],
+        "x-ISC_CORS": true,
+        "summary": "Respond slow after the specified number of seconds or return the specified http status",
+        "operationId": "HttpTest",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [ 
+          {
+            "in": "query",
+            "name": "delay",
+            "description": "Delay for the specified number of seconds",
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "query",
+            "name": "http-status",
+            "description": "Return the specified HTTP Status code",
+            "type": "integer",
+            "format": "int32"
+          }
+        ]
+      }
+    },
+    "/apilog": {
+      "get": {
+        "tags": [
+          "HTTPConnectorTest"
+        ],
+        "summary": "Opvragen van API logging",
+        "operationId": "GetApiLog",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [ 
+          {
+            "in": "query",
+            "name": "endpoint",
+            "description": "Filter on api endpoint",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "description": "UTC-timestamp van eerste op te vragen logregel",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "description": "UTC-timestamp van laatste op te vragen logregel",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "description": "requested page-size",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ApiLogResponse"
+            }
+          },
+          "400": {
+            "description": "Foute waarde in query parameter",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "500": {
+            "description": "Probleem in API, probeer het later opnieuw",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
-    "MonitoringResponse": {
+    "ApiLogResponse": {
       "allOf": [
         {
           "$ref": "#/definitions/ApiResponse"
@@ -107,173 +201,34 @@ XData OpenAPI [ MimeType = application/json ]
               "format": "date-time",
               "example": "2023-03-20T15:14:45.7384083Z"
             },
-            "processes": {
+            "logregels": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Process"
+                "$ref": "#/definitions/ApiLogRegel"
               }
             }
           }
         }
       ]
     },
-    "Process": {
+    "ApiLogRegel": {
       "type": "object",
       "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of Process"
-        },
-        "sessionId": {
-          "type": "string",
-          "description": "IRIS Session ID, can be used to find the relevant messages"
-        },
-        "status": {
-          "type": "string",
-          "description": "Status of the process",
-          "enum": [
-            "Running",
-            "OK",
-            "Failed"
-          ]
-        },
-        "startedAt": {
+        "date-time": {
           "type": "string",
           "format": "date-time",
-          "description": "When did the process start"
+          "description": "When was the call processed"
         },
-        "finishedAt": {
+        "method": {
           "type": "string",
-          "format": "date-time",
-          "description": "When did the process finish"
+          "description": "Method that was used"
         },
-        "elapsedTime": {
+        "endpoint": {
           "type": "string",
-          "format": "time",
-          "description": "How long did this process run (or is it running)"
-        },
-        "error": {
-          "type": "string",
-          "description": "Error message when status is Failed"
+          "description": "Endpoint that was called"
         }
       },
       "additionalProperties": false
-    },
-    "DossierCollectRequest": {
-      "type": "object",
-      "properties": {
-        "dossierId": {
-          "type": "string",
-          "description": "The line number in the DossierExport spreadsheet"
-        },
-        "clientIdentificationNumber": {
-          "type":"string",
-          "description": "The identificationNumber for the client in Nedap ONS"
-        },
-        "periodFrom": {
-          "type": "string",
-          "format": "date",
-          "description": "Start date of relevant period"
-        },
-        "periodTo": {
-          "type": "string",
-          "format": "date",
-          "description": "End date of relevant period"
-        },
-        "aanvrager": {
-          "type": "string",
-          "description": "Requester of the export"
-        },
-        "redenAanvraag": {
-          "type": "string",
-          "description": "Reason for the request"
-        }
-      },
-      "additionalProperties": false
-    },
-    "DossierShareRequest": {
-      "type": "object",
-      "properties": {
-        "dossierId": {
-          "type": "string",
-          "description": "The line number in the DossierExport spreadsheet"
-        },
-        "emailAddress": {
-          "type": "string",
-          "description": "email address to share the Dossier to"
-        }
-      },
-      "additionalProperties": false
-    },
-    "DossierMailRequest": {
-      "type": "object",
-      "properties": {
-        "dossierId": {
-          "type": "string",
-          "description": "The line number in the DossierExport spreadsheet"
-        },
-        "aanvrager": {
-          "type": "string",
-          "description": "Requester of the export"
-        },
-        "emailAddress": {
-          "type": "string",
-          "description": "email address to email the Dossier to"
-        },
-        "phoneNumber": {
-          "type": "string",
-          "description": "Telephone number for 2FA"
-        }
-      },
-      "additionalProperties": false
-    },
-    "DossierPrintRequest": {
-      "type": "object",
-      "properties": {
-        "dossierId": {
-          "type": "string",
-          "description": "The line number in the DossierExport spreadsheet"
-        },
-        "aanvrager": {
-          "type": "string",
-          "description": "Requester of the export"
-        },
-        "userName": {
-          "type":"string",
-          "description": "userName of target user"
-        }
-      },
-      "additionalProperties": false
-    },
-    "DossierDeleteRequest": {
-      "type": "object",
-      "properties": {
-        "dossierId": {
-          "type": "string",
-          "description": "The line number in the DossierExport spreadsheet"
-        },
-        "folderId": {
-          "type":"string",
-          "description": "The Id of the Folder. When empty, fetch from Google spreadsheet"
-        }
-      },
-      "additionalProperties": false
-    },
-    "AsyncApiResponse": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ApiResponse"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "sessionId": {
-              "type": "string",
-              "description": "IRIS Session ID, can be used to find the relevant messages"
-            }
-          }
-        }
-      ]
     },
     "ApiResponse": {
       "type": "object",

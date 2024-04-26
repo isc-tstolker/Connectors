@@ -31,6 +31,9 @@ Method Handle(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, Output
 	set sc = $$$OK, pHttpRequestIn = ##class(%Net.HttpRequest).%New()
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(pHttpRequestIn))
 
+	#; set ..FailureTimeout = 5
+	#; set ..RetryInterval = 2
+
 	set url = ..ProcessUrlParams(requestMessage, pHttpRequestIn)
 	$$$QuitOnError(..ProcessHeaders(requestMessage, pHttpRequestIn))
 
@@ -50,6 +53,25 @@ Method Handle(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, Output
 	}
 
 	return sc
+}
+
+/// Construct and return an Action string consisting of supported action code letters, based on criteria in the ReplyCodeActions setting value and qualities of the current Request, Response, and Error Status.
+Method OnGetReplyAction(pRequest As %Library.Persistent, ByRef pResponse As %Library.Persistent, ByRef pSC As %Status) As %String
+{
+	if $$$ISOK(pSC)
+	{
+		#dim response as CONNECTORSPKG.BO.GenericHTTP.Msg.Response = pResponse
+		set sc = $$$ERROR(response.HttpStatusCode)
+		set action = ##super(pRequest, .pResponse, .sc)
+		$$$TRACE("HTTP Status = " _ response.HttpStatusCode _ "; reply code action = " _ action)
+	}
+	else
+	{
+		set action = ##super(pRequest, .pResponse, .pSC)
+		$$$TRACE("Status = " _ $SYSTEM.Status.GetErrorText(pSC) _ "; reply code action = " _ action)
+	}
+
+	return action
 }
 
 /// Process Url Parameters
