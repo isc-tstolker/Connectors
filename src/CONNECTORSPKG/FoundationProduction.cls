@@ -8,7 +8,6 @@ XData ProductionDefinition
   <Description></Description>
   <ActorPoolSize>1</ActorPoolSize>
   <Item Name="VektisAGB" Category="" ClassName="CONNECTORSPKG.VektisAGB.Api.Client.bo.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Adapter" Name="SSLConfig">VektisAGB</Setting>
     <Setting Target="Adapter" Name="HTTPPort">443</Setting>
   </Item>
   <Item Name="ZorgAB" Category="" ClassName="CONNECTORSPKG.ZorgAB.Api.Client.bo.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">

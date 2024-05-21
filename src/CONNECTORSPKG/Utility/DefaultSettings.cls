@@ -204,8 +204,9 @@ ClassMethod InFilter(filter As %String, itemName As %String, class As %String, t
     for classIndex = 1:1:$LENGTH(filter, ";")
     {
         set classPart = $PIECE(filter, ";", classIndex)
+        set configClass = $PIECE(classPart, ":", 1)
 
-        if (class '= "*") && ($PIECE(classPart, ":", 1) '= class)
+        if (configClass '= "*") && (configClass '= class)
         {
             continue
         }
