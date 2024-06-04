@@ -56,7 +56,7 @@ ClassMethod Import() As %Status
 /// Connectors action
 ClassMethod SettingsFromProduction(removeFromProduction As %Boolean = 0, updateSettings As %Boolean = 1) As %Status
 {
-    return ..GetSettingsFromProduction("CONNECTORSPKG.FoundationProduction", "*:HTTPServer,SSLConfig;CONNECTORSPKG.BO.GenericHTTP.Operation:HttpMethod,AcceptHeader,ContentType,URL,AuthorizationType,Credentials,CustomAuthorizationHeader,AlertOnError,ReplyCodeActions", removeFromProduction, updateSettings)
+    return ..GetSettingsFromProduction("CONNECTORSPKG.FoundationProduction", "*:HTTPServer,SSLConfig;GenericHTTPOperation.Operation:HttpMethod,AcceptHeader,ContentType,URL,AuthorizationType,Credentials,CustomAuthorizationHeader,AlertOnError,ReplyCodeActions", removeFromProduction, updateSettings)
 }
 
 /// Get settings From Production

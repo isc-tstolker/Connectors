@@ -14,24 +14,24 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="HTTPPort">443</Setting>
     <Setting Target="Adapter" Name="URL">/zab-ro</Setting>
   </Item>
-  <Item Name="TestRetry" Category="" ClassName="CONNECTORSPKG.BO.GenericHTTP.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="TestRetry" Category="" ClassName="GenericHTTPOperation.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="FailureTimeout">10</Setting>
     <Setting Target="Host" Name="RetryInterval">2</Setting>
     <Setting Target="Adapter" Name="ResponseTimeout">2</Setting>
     <Setting Target="Host" Name="TraceOperations">*FULL*</Setting>
   </Item>
-  <Item Name="TestReplyCodeActions" Category="" ClassName="CONNECTORSPKG.BO.GenericHTTP.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="TestReplyCodeActions" Category="" ClassName="GenericHTTPOperation.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="FailureTimeout">10</Setting>
     <Setting Target="Host" Name="RetryInterval">2</Setting>
     <Setting Target="Adapter" Name="ResponseTimeout">2</Setting>
   </Item>
-  <Item Name="GetIP" Category="" ClassName="CONNECTORSPKG.BO.GenericHTTP.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="GetIP" Category="" ClassName="GenericHTTPOperation.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="TraceOperations">*FULL*</Setting>
   </Item>
-  <Item Name="GetAGBVestiging" Category="" ClassName="CONNECTORSPKG.BO.GenericHTTP.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="GetAGBVestiging" Category="" ClassName="GenericHTTPOperation.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="TraceOperations">*FULL*</Setting>
   </Item>
-  <Item Name="GetInPlanningApplicationInfo" Category="" ClassName="CONNECTORSPKG.BO.GenericHTTP.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="GetInPlanningApplicationInfo" Category="" ClassName="GenericHTTPOperation.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="TraceOperations">*FULL*</Setting>
   </Item>
   <Item Name="HS.Util.Trace.Operations" Category="" ClassName="HS.Util.Trace.Operations" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
