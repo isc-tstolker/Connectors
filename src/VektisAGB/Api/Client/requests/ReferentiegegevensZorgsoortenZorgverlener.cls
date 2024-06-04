@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensZorgsoortenZorgverlener Extends Ens.Request [ ProcedureBlock ]
+Class VektisAGB.Api.Client.requests.ReferentiegegevensZorgsoortenZorgverlener Extends Ens.Request [ ProcedureBlock ]
 {
 
 Parameter METHOD = "get";

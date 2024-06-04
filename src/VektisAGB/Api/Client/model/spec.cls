@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.spec Extends %RegisteredObject [ ProcedureBlock ]
+Class VektisAGB.Api.Client.model.spec Extends %RegisteredObject [ ProcedureBlock ]
 {
 
 XData OpenAPI [ MimeType = application/json ]

@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingOrganisatieV2 Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.OndernemingOndernemingOrganisatieV2 Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingOrganis
 /// Onderneminghttp status code = 200 content-type = application/xml
 /// Onderneminghttp status code = 200 content-type = text/xml
 /// Onderneming
-Property v2OndernemingOndernemingOrganisatie As CONNECTORSPKG.VektisAGB.Api.Client.model.v2OndernemingOndernemingOrganisatie(XMLNAME = "Onderneming");
+Property v2OndernemingOndernemingOrganisatie As VektisAGB.Api.Client.model.v2OndernemingOndernemingOrganisatie(XMLNAME = "Onderneming");
 
 /// Implement operationId : OndernemingOndernemingOrganisatieV2
 /// get /v2/ondernemingen/{agbcode}/relaties/organisatie
@@ -16,7 +16,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
-		Set ..v2OndernemingOndernemingOrganisatie = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.v2OndernemingOndernemingOrganisatie).%New()
+		Set ..v2OndernemingOndernemingOrganisatie = ##class(VektisAGB.Api.Client.model.v2OndernemingOndernemingOrganisatie).%New()
 		Set ..status = ..v2OndernemingOndernemingOrganisatie.%JSONImport(httpResponse.Data)
 		Return sc
 	}
@@ -29,7 +29,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("Onderneming","CONNECTORSPKG.VektisAGB.Api.Client.model.v2OndernemingOndernemingOrganisatie")
+		Do reader.Correlate("Onderneming","VektisAGB.Api.Client.model.v2OndernemingOndernemingOrganisatie")
 		Do reader.Next(.v2OndernemingOndernemingOrganisatie, .sc)
 		If $$$ISERR(sc) Quit sc
 		Set ..v2OndernemingOndernemingOrganisatie = v2OndernemingOndernemingOrganisatie

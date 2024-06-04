@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensGeslachten Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensGeslachten Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensGeslachten 
 /// Geslachtenhttp status code = 200 content-type = application/xml
 /// Geslachtenhttp status code = 200 content-type = text/xml
 /// Geslachten
-Property ListOfReferentiegegevensGeslacht As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensGeslacht;
+Property ListOfReferentiegegevensGeslacht As list Of VektisAGB.Api.Client.model.ReferentiegegevensGeslacht;
 
 /// Implement operationId : ReferentiegegevensGeslachten
 /// get /v2/geslachten
@@ -18,7 +18,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
 		Set array = [].%FromJSON(httpResponse.Data), iterator = array.%GetIterator()
 		While iterator.%GetNext(.index, .item) {
-			Set obj = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensGeslacht).%New()
+			Set obj = ##class(VektisAGB.Api.Client.model.ReferentiegegevensGeslacht).%New()
 			Do obj.%JSONImport(item), ..ListOfReferentiegegevensGeslacht.Insert(obj)
 		}
 		Return sc
@@ -32,7 +32,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("Geslacht","CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensGeslacht")
+		Do reader.Correlate("Geslacht","VektisAGB.Api.Client.model.ReferentiegegevensGeslacht")
 		While reader.Next(.ReferentiegegevensGeslacht, .sc) {
 			Return:$$$ISERR(sc) sc
 			Do ..ListOfReferentiegegevensGeslacht.Insert(ReferentiegegevensGeslacht)

@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensProvincies Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensProvincies Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensProvincies 
 /// Provincieshttp status code = 200 content-type = application/xml
 /// Provincieshttp status code = 200 content-type = text/xml
 /// Provincies
-Property ListOfReferentiegegevensProvincie As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensProvincie;
+Property ListOfReferentiegegevensProvincie As list Of VektisAGB.Api.Client.model.ReferentiegegevensProvincie;
 
 /// Implement operationId : ReferentiegegevensProvincies
 /// get /v2/provincies
@@ -18,7 +18,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
 		Set array = [].%FromJSON(httpResponse.Data), iterator = array.%GetIterator()
 		While iterator.%GetNext(.index, .item) {
-			Set obj = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensProvincie).%New()
+			Set obj = ##class(VektisAGB.Api.Client.model.ReferentiegegevensProvincie).%New()
 			Do obj.%JSONImport(item), ..ListOfReferentiegegevensProvincie.Insert(obj)
 		}
 		Return sc
@@ -32,7 +32,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("Provincie","CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensProvincie")
+		Do reader.Correlate("Provincie","VektisAGB.Api.Client.model.ReferentiegegevensProvincie")
 		While reader.Next(.ReferentiegegevensProvincie, .sc) {
 			Return:$$$ISERR(sc) sc
 			Do ..ListOfReferentiegegevensProvincie.Insert(ReferentiegegevensProvincie)

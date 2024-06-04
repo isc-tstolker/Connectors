@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRelatieTypes Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensRelatieTypes Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRelatieType
 /// Relatietypeshttp status code = 200 content-type = application/xml
 /// Relatietypeshttp status code = 200 content-type = text/xml
 /// Relatietypes
-Property ListOfReferentiegegevensRelatieType As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensRelatieType;
+Property ListOfReferentiegegevensRelatieType As list Of VektisAGB.Api.Client.model.ReferentiegegevensRelatieType;
 
 /// Implement operationId : ReferentiegegevensRelatieTypes
 /// get /v2/relatietypes
@@ -18,7 +18,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
 		Set array = [].%FromJSON(httpResponse.Data), iterator = array.%GetIterator()
 		While iterator.%GetNext(.index, .item) {
-			Set obj = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensRelatieType).%New()
+			Set obj = ##class(VektisAGB.Api.Client.model.ReferentiegegevensRelatieType).%New()
 			Do obj.%JSONImport(item), ..ListOfReferentiegegevensRelatieType.Insert(obj)
 		}
 		Return sc
@@ -32,7 +32,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("Type","CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensRelatieType")
+		Do reader.Correlate("Type","VektisAGB.Api.Client.model.ReferentiegegevensRelatieType")
 		While reader.Next(.ReferentiegegevensRelatieType, .sc) {
 			Return:$$$ISERR(sc) sc
 			Do ..ListOfReferentiegegevensRelatieType.Insert(ReferentiegegevensRelatieType)

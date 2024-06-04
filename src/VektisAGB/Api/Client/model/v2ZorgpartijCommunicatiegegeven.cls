@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijCommunicatiegegeven Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2ZorgpartijCommunicatiegegeven Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// DATUMAANVANG, dateTime, Datum vanaf wanneer het communicatiegegeven geldig is
@@ -7,7 +7,7 @@ Property Aanvang As %TimeStamp;
 
 /// 
 /// * This property is required.
-Property Doel As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensDoel(XMLNAME = "Doel");
+Property Doel As VektisAGB.Api.Client.model.ReferentiegegevensDoel(XMLNAME = "Doel");
 
 /// DATUMEINDE, dateTime, Datum tot en met wanneer het communicatiegegeven geldig is
 Property Einde As %TimeStamp;
@@ -18,7 +18,7 @@ Property Gegeven As %String(MAXLEN = 128, MINLEN = 1);
 
 /// 
 /// * This property is required.
-Property Type As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensCommunicatiegegevenType(XMLNAME = "CommunicatiegegevenType");
+Property Type As VektisAGB.Api.Client.model.ReferentiegegevensCommunicatiegegevenType(XMLNAME = "CommunicatiegegevenType");
 
 Storage Default
 {

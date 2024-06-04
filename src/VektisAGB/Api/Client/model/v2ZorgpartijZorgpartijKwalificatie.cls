@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijKwalificatie Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijKwalificatie Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// DATUMAANVANG, dateTime, Datum vanaf wanneer de kwalificatie geldig is

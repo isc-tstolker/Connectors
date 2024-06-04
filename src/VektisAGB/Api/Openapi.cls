@@ -1,11 +1,11 @@
 /// OpenAPI spec for VektisAGB
-Class CONNECTORSPKG.VektisAGB.Api.Openapi
+Class VektisAGB.Api.Openapi
 {
 
 /// Delete API
 ClassMethod DeleteAll()
 {
-    Do $SYSTEM.OBJ.DeletePackage("CONNECTORSPKG.VektisAGB.Api.Client")
+    Do $SYSTEM.OBJ.DeletePackage("VektisAGB.Api.Client")
 }
 
 /// - Downloaded the swagger-spec from https://test-agb-api.vektis.nl/v2/swagger
@@ -11627,7 +11627,7 @@ ClassMethod GenerateAll() As %Status
     #dim xData as %Dictionary.CompiledXData = ##class(%Dictionary.CompiledXData).%OpenId($CLASSNAME() _ "||spec")
     set spec = ##class(%DynamicObject).%FromJSON(xData.Data)
 
-    return ..Generate("CONNECTORSPKG.VektisAGB.Api.Client", spec)
+    return ..Generate("VektisAGB.Api.Client", spec)
 }
 
 /// Generate API helper

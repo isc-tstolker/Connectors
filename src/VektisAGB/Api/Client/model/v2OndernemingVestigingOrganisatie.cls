@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2OndernemingVestigingOrganisatie Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2OndernemingVestigingOrganisatie Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// CODE, length = 8 numeriek in een string, AGBCode
@@ -15,7 +15,7 @@ Property AanvangRelatie As %TimeStamp;
 
 /// 
 /// * This property is required.
-Property BezoekAdres As CONNECTORSPKG.VektisAGB.Api.Client.model.v2OndernemingAdres(XMLNAME = "Adres");
+Property BezoekAdres As VektisAGB.Api.Client.model.v2OndernemingAdres(XMLNAME = "Adres");
 
 /// DATUMEINDE, dateTime, Datum tot en met wanneer de AGBCode geldig is
 Property EindeAGBCode As %TimeStamp;

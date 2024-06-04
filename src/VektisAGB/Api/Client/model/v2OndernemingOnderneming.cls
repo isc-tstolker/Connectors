@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2OndernemingOnderneming Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2OndernemingOnderneming Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// CODE, length = 8 numeriek in een string, AGBCode
@@ -9,24 +9,24 @@ Property AGBCode As %String(MAXLEN = 8, MINLEN = 8);
 /// * This property is required.
 Property Aanvang As %TimeStamp;
 
-Property Adressen As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijAdres(XMLITEMNAME = "Adres");
+Property Adressen As list Of VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijAdres(XMLITEMNAME = "Adres");
 
 /// 
 /// * This property is required.
-Property BeheerderVerlenerAGBCode As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensBeheerder(XMLNAME = "Beheerder");
+Property BeheerderVerlenerAGBCode As VektisAGB.Api.Client.model.ReferentiegegevensBeheerder(XMLNAME = "Beheerder");
 
-Property Communicatiegegevens As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijCommunicatiegegeven(XMLITEMNAME = "Communicatiegegeven");
+Property Communicatiegegevens As list Of VektisAGB.Api.Client.model.v2ZorgpartijCommunicatiegegeven(XMLITEMNAME = "Communicatiegegeven");
 
 /// DATUMEINDE, dateTime, Datum tot en met wanneer de AGBCode geldig is
 Property Einde As %TimeStamp;
 
-Property Erkenningen As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijErkenning(XMLITEMNAME = "Erkenning");
+Property Erkenningen As list Of VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijErkenning(XMLITEMNAME = "Erkenning");
 
 /// HANDELSNAAM1, maxLength = 150, Eerste handelsnaam waaronder de onderneming bekend is bij het handelsregister
 /// * This property is required.
 Property Handelsnaam As %String(MAXLEN = 150, MINLEN = 1);
 
-Property Kwalificaties As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijKwalificatie(XMLITEMNAME = "Kwalificatie");
+Property Kwalificaties As list Of VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijKwalificatie(XMLITEMNAME = "Kwalificatie");
 
 /// ROEPNAAM, maxLength = 60, Naam waaronder de onderneming bekend is of vermeld wil staan
 /// * This property is required.
@@ -37,11 +37,11 @@ Property StatutaireNaam As %String(MAXLEN = 150, MINLEN = 0);
 
 /// 
 /// * This property is required.
-Property ZorgpartijType As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgpartijType(XMLNAME = "ZorgpartijType");
+Property ZorgpartijType As VektisAGB.Api.Client.model.ReferentiegegevensZorgpartijType(XMLNAME = "ZorgpartijType");
 
 /// 
 /// * This property is required.
-Property Zorgsoort As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort(XMLNAME = "Zorgsoort");
+Property Zorgsoort As VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort(XMLNAME = "Zorgsoort");
 
 Storage Default
 {

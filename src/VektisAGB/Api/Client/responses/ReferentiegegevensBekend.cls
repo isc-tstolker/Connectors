@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensBekend Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensBekend Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// Implement operationId : ReferentiegegevensBekend

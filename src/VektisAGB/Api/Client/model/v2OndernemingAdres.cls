@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2OndernemingAdres Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2OndernemingAdres Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// DATUMAANVANG, dateTime, Datum vanaf wanneer een AGBCode geldig is

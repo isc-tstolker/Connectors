@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensAdresTypes Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensAdresTypes Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensAdresTypes 
 /// Adrestypeshttp status code = 200 content-type = application/xml
 /// Adrestypeshttp status code = 200 content-type = text/xml
 /// Adrestypes
-Property ListOfReferentiegegevensAdresType As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensAdresType;
+Property ListOfReferentiegegevensAdresType As list Of VektisAGB.Api.Client.model.ReferentiegegevensAdresType;
 
 /// Implement operationId : ReferentiegegevensAdresTypes
 /// get /v2/adrestypes
@@ -18,7 +18,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
 		Set array = [].%FromJSON(httpResponse.Data), iterator = array.%GetIterator()
 		While iterator.%GetNext(.index, .item) {
-			Set obj = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensAdresType).%New()
+			Set obj = ##class(VektisAGB.Api.Client.model.ReferentiegegevensAdresType).%New()
 			Do obj.%JSONImport(item), ..ListOfReferentiegegevensAdresType.Insert(obj)
 		}
 		Return sc
@@ -32,7 +32,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("AdresType","CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensAdresType")
+		Do reader.Correlate("AdresType","VektisAGB.Api.Client.model.ReferentiegegevensAdresType")
 		While reader.Next(.ReferentiegegevensAdresType, .sc) {
 			Return:$$$ISERR(sc) sc
 			Do ..ListOfReferentiegegevensAdresType.Insert(ReferentiegegevensAdresType)

@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensLanden Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensLanden Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensLanden Exte
 /// Landenhttp status code = 200 content-type = application/xml
 /// Landenhttp status code = 200 content-type = text/xml
 /// Landen
-Property ListOfReferentiegegevensLand As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensLand;
+Property ListOfReferentiegegevensLand As list Of VektisAGB.Api.Client.model.ReferentiegegevensLand;
 
 /// Implement operationId : ReferentiegegevensLanden
 /// get /v2/landen
@@ -18,7 +18,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
 		Set array = [].%FromJSON(httpResponse.Data), iterator = array.%GetIterator()
 		While iterator.%GetNext(.index, .item) {
-			Set obj = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensLand).%New()
+			Set obj = ##class(VektisAGB.Api.Client.model.ReferentiegegevensLand).%New()
 			Do obj.%JSONImport(item), ..ListOfReferentiegegevensLand.Insert(obj)
 		}
 		Return sc
@@ -32,7 +32,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("Land","CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensLand")
+		Do reader.Correlate("Land","VektisAGB.Api.Client.model.ReferentiegegevensLand")
 		While reader.Next(.ReferentiegegevensLand, .sc) {
 			Return:$$$ISERR(sc) sc
 			Do ..ListOfReferentiegegevensLand.Insert(ReferentiegegevensLand)

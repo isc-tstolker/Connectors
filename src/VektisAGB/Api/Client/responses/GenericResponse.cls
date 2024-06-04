@@ -1,5 +1,5 @@
 /// Generic Response Class
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse Extends Ens.Response [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.GenericResponse Extends Ens.Response [ Inheritance = left, ProcedureBlock ]
 {
 
 Property body As %Stream.GlobalCharacter;
@@ -49,7 +49,7 @@ Storage Default
 <Data name="headers">
 <Attribute>headers</Attribute>
 <Structure>subnode</Structure>
-<Subscript>"CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse.headers"</Subscript>
+<Subscript>"VektisAGB.Api.Client.responses.GenericResponse.headers"</Subscript>
 </Data>
 <DefaultData>GenericResponseDefaultData</DefaultData>
 <Type>%Storage.Persistent</Type>

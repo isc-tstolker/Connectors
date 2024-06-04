@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijAdres Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijAdres Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// DATUMAANVANG, dateTime, Datum vanaf wanneer het adres geldig is
@@ -17,7 +17,7 @@ Property HuisnummerToevoeging As %String(MAXLEN = 8, MINLEN = 0);
 
 /// 
 /// * This property is required.
-Property Land As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensLand(XMLNAME = "Land");
+Property Land As VektisAGB.Api.Client.model.ReferentiegegevensLand(XMLNAME = "Land");
 
 /// PLAATS, maxLength = 60, Plaatsnaam van het adres
 /// * This property is required.
@@ -27,7 +27,7 @@ Property Plaats As %String(MAXLEN = 60, MINLEN = 1);
 /// * This property is required.
 Property Postcode As %String(MAXLEN = 8, MINLEN = 1);
 
-Property Provincie As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensProvincie(XMLNAME = "Provincie");
+Property Provincie As VektisAGB.Api.Client.model.ReferentiegegevensProvincie(XMLNAME = "Provincie");
 
 /// STRAATNAAM, maxLength = 60, Straatnaam van het adres
 /// * This property is required.
@@ -35,7 +35,7 @@ Property Straat As %String(MAXLEN = 60, MINLEN = 1);
 
 /// 
 /// * This property is required.
-Property Type As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensAdresType(XMLNAME = "AdresType");
+Property Type As VektisAGB.Api.Client.model.ReferentiegegevensAdresType(XMLNAME = "AdresType");
 
 Storage Default
 {

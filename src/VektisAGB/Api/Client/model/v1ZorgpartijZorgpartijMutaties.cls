@@ -1,7 +1,7 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v1ZorgpartijZorgpartijMutaties Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v1ZorgpartijZorgpartijMutaties Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
-Property Zorgpartijen As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.v1ZorgpartijZorgpartijMutatie(XMLITEMNAME = "Zorgpartij");
+Property Zorgpartijen As list Of VektisAGB.Api.Client.model.v1ZorgpartijZorgpartijMutatie(XMLITEMNAME = "Zorgpartij");
 
 Storage Default
 {

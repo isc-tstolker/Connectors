@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.TestGet Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.TestGet Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.TestGet Extends CONNECTORSPKG
 /// Testmodelhttp status code = 200 content-type = application/xml
 /// Testmodelhttp status code = 200 content-type = text/xml
 /// Testmodel
-Property TestModel As CONNECTORSPKG.VektisAGB.Api.Client.model.TestModel(XMLNAME = "TestModel");
+Property TestModel As VektisAGB.Api.Client.model.TestModel(XMLNAME = "TestModel");
 
 /// Implement operationId : TestGet
 /// get /v2/test/{number}
@@ -16,7 +16,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
-		Set ..TestModel = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.TestModel).%New()
+		Set ..TestModel = ##class(VektisAGB.Api.Client.model.TestModel).%New()
 		Set ..status = ..TestModel.%JSONImport(httpResponse.Data)
 		Return sc
 	}
@@ -29,7 +29,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("TestModel","CONNECTORSPKG.VektisAGB.Api.Client.model.TestModel")
+		Do reader.Correlate("TestModel","VektisAGB.Api.Client.model.TestModel")
 		Do reader.Next(.TestModel, .sc)
 		If $$$ISERR(sc) Quit sc
 		Set ..TestModel = TestModel

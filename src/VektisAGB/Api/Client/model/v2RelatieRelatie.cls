@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2RelatieRelatie Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2RelatieRelatie Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// CODE, length = 8 numeriek in een string, AGBCode
@@ -18,17 +18,17 @@ Property Naam As %String(MAXLEN = 60, MINLEN = 1);
 
 /// 
 /// * This property is required.
-Property Rol As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensRelatieRol(XMLNAME = "Rol");
+Property Rol As VektisAGB.Api.Client.model.ReferentiegegevensRelatieRol(XMLNAME = "Rol");
 
 /// 
 /// * This property is required.
-Property Type As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensRelatieType(XMLNAME = "Type");
+Property Type As VektisAGB.Api.Client.model.ReferentiegegevensRelatieType(XMLNAME = "Type");
 
-Property Zorgaanbod As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgaanbod(XMLNAME = "Zorgaanbod");
+Property Zorgaanbod As VektisAGB.Api.Client.model.ReferentiegegevensZorgaanbod(XMLNAME = "Zorgaanbod");
 
 /// 
 /// * This property is required.
-Property ZorgpartijType As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgpartijType(XMLNAME = "ZorgpartijType");
+Property ZorgpartijType As VektisAGB.Api.Client.model.ReferentiegegevensZorgpartijType(XMLNAME = "ZorgpartijType");
 
 Storage Default
 {

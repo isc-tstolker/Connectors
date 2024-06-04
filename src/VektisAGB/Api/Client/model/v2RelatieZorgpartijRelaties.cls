@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2RelatieZorgpartijRelaties Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2RelatieZorgpartijRelaties Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// CODE, length = 8 numeriek in een string, AGBCode
@@ -11,11 +11,11 @@ Property Naam As %String(MAXLEN = 60, MINLEN = 1);
 
 /// 
 /// * This property is required.
-Property Relaties As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.v2RelatieRelatie(XMLITEMNAME = "Relatie");
+Property Relaties As list Of VektisAGB.Api.Client.model.v2RelatieRelatie(XMLITEMNAME = "Relatie");
 
 /// 
 /// * This property is required.
-Property ZorgpartijType As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgpartijType(XMLNAME = "ZorgpartijType");
+Property ZorgpartijType As VektisAGB.Api.Client.model.ReferentiegegevensZorgpartijType(XMLNAME = "ZorgpartijType");
 
 Storage Default
 {

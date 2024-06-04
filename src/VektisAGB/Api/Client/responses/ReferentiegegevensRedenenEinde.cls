@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRedenenEinde Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensRedenenEinde Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRedenenEind
 /// Redenen voor beeindigen erkenningenhttp status code = 200 content-type = application/xml
 /// Redenen voor beeindigen erkenningenhttp status code = 200 content-type = text/xml
 /// Redenen voor beeindigen erkenningen
-Property ListOfReferentiegegevensRedenenEinde As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensRedenenEinde;
+Property ListOfReferentiegegevensRedenenEinde As list Of VektisAGB.Api.Client.model.ReferentiegegevensRedenenEinde;
 
 /// Implement operationId : ReferentiegegevensRedenenEinde
 /// get /v2/redeneneinde
@@ -18,7 +18,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
 		Set array = [].%FromJSON(httpResponse.Data), iterator = array.%GetIterator()
 		While iterator.%GetNext(.index, .item) {
-			Set obj = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensRedenenEinde).%New()
+			Set obj = ##class(VektisAGB.Api.Client.model.ReferentiegegevensRedenenEinde).%New()
 			Do obj.%JSONImport(item), ..ListOfReferentiegegevensRedenenEinde.Insert(obj)
 		}
 		Return sc
@@ -32,7 +32,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("RedenenEinde","CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensRedenenEinde")
+		Do reader.Correlate("RedenenEinde","VektisAGB.Api.Client.model.ReferentiegegevensRedenenEinde")
 		While reader.Next(.ReferentiegegevensRedenenEinde, .sc) {
 			Return:$$$ISERR(sc) sc
 			Do ..ListOfReferentiegegevensRedenenEinde.Insert(ReferentiegegevensRedenenEinde)

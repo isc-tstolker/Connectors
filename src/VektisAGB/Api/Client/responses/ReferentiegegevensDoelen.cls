@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensDoelen Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensDoelen Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensDoelen Exte
 /// Doelenhttp status code = 200 content-type = application/xml
 /// Doelenhttp status code = 200 content-type = text/xml
 /// Doelen
-Property ListOfReferentiegegevensDoel As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensDoel;
+Property ListOfReferentiegegevensDoel As list Of VektisAGB.Api.Client.model.ReferentiegegevensDoel;
 
 /// Implement operationId : ReferentiegegevensDoelen
 /// get /v2/doelen
@@ -18,7 +18,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
 		Set array = [].%FromJSON(httpResponse.Data), iterator = array.%GetIterator()
 		While iterator.%GetNext(.index, .item) {
-			Set obj = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensDoel).%New()
+			Set obj = ##class(VektisAGB.Api.Client.model.ReferentiegegevensDoel).%New()
 			Do obj.%JSONImport(item), ..ListOfReferentiegegevensDoel.Insert(obj)
 		}
 		Return sc
@@ -32,7 +32,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("Doel","CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensDoel")
+		Do reader.Correlate("Doel","VektisAGB.Api.Client.model.ReferentiegegevensDoel")
 		While reader.Next(.ReferentiegegevensDoel, .sc) {
 			Return:$$$ISERR(sc) sc
 			Do ..ListOfReferentiegegevensDoel.Insert(ReferentiegegevensDoel)

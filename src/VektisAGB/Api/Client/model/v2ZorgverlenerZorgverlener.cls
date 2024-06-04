@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgverlenerZorgverlener Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class VektisAGB.Api.Client.model.v2ZorgverlenerZorgverlener Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// CODE, length = 8 numeriek in een string, AGBCode
@@ -9,7 +9,7 @@ Property AGBCode As %String(MAXLEN = 8, MINLEN = 8);
 /// * This property is required.
 Property Aanvang As %TimeStamp;
 
-Property AcademischeTitel As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensAcademischeTitel(XMLNAME = "Academischetitel");
+Property AcademischeTitel As VektisAGB.Api.Client.model.ReferentiegegevensAcademischeTitel(XMLNAME = "Academischetitel");
 
 /// Achternaam, maxLength = 60, Achternaam waaronder de zorgverlener bekend is
 /// * This property is required.
@@ -18,7 +18,7 @@ Property Achternaam As %String(MAXLEN = 60, MINLEN = 1);
 /// DATUMEINDE, dateTime, Datum tot en met wanneer de AGBCode geldig is
 Property Einde As %TimeStamp;
 
-Property Erkenningen As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijErkenning(XMLITEMNAME = "Erkenning");
+Property Erkenningen As list Of VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijErkenning(XMLITEMNAME = "Erkenning");
 
 /// DATUMGEBOORTE, dateTime, Geboortedatum van de zorgverlener
 /// * This property is required.
@@ -32,9 +32,9 @@ Property GeboortenaamTussenvoegsel As %String(MAXLEN = 12, MINLEN = 0);
 
 /// 
 /// * This property is required.
-Property Geslacht As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensGeslacht(XMLNAME = "Geslacht");
+Property Geslacht As VektisAGB.Api.Client.model.ReferentiegegevensGeslacht(XMLNAME = "Geslacht");
 
-Property Kwalificaties As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijKwalificatie(XMLITEMNAME = "Kwalificatie");
+Property Kwalificaties As list Of VektisAGB.Api.Client.model.v2ZorgpartijZorgpartijKwalificatie(XMLITEMNAME = "Kwalificatie");
 
 /// TUSSENVOEGSEL, maxLength = 12, Tussenvoegsel waaronder de zorgverlener bekend is, waarde komt voor in codelijst NAM040 of referentiegegevens 'Tussenvoegsels'
 Property Tussenvoegsel As %String(MAXLEN = 12, MINLEN = 0);
@@ -45,7 +45,7 @@ Property Voorletters As %String(MAXLEN = 6, MINLEN = 1);
 
 /// 
 /// * This property is required.
-Property Zorgsoort As CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort(XMLNAME = "Zorgsoort");
+Property Zorgsoort As VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort(XMLNAME = "Zorgsoort");
 
 Storage Default
 {

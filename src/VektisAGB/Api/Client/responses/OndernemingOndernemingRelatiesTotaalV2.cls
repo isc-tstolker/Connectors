@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesTotaalV2 Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesTotaalV2 Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingRelatie
 /// Relatieshttp status code = 200 content-type = application/xml
 /// Relatieshttp status code = 200 content-type = text/xml
 /// Relaties
-Property v2RelatieZorgpartijRelaties As CONNECTORSPKG.VektisAGB.Api.Client.model.v2RelatieZorgpartijRelaties(XMLNAME = "Zorgpartij");
+Property v2RelatieZorgpartijRelaties As VektisAGB.Api.Client.model.v2RelatieZorgpartijRelaties(XMLNAME = "Zorgpartij");
 
 /// Implement operationId : OndernemingOndernemingRelatiesTotaalV2
 /// get /v2/ondernemingen/{agbcode}/relaties/totaal
@@ -16,7 +16,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
-		Set ..v2RelatieZorgpartijRelaties = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.v2RelatieZorgpartijRelaties).%New()
+		Set ..v2RelatieZorgpartijRelaties = ##class(VektisAGB.Api.Client.model.v2RelatieZorgpartijRelaties).%New()
 		Set ..status = ..v2RelatieZorgpartijRelaties.%JSONImport(httpResponse.Data)
 		Return sc
 	}
@@ -29,7 +29,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("Zorgpartij","CONNECTORSPKG.VektisAGB.Api.Client.model.v2RelatieZorgpartijRelaties")
+		Do reader.Correlate("Zorgpartij","VektisAGB.Api.Client.model.v2RelatieZorgpartijRelaties")
 		Do reader.Next(.v2RelatieZorgpartijRelaties, .sc)
 		If $$$ISERR(sc) Quit sc
 		Set ..v2RelatieZorgpartijRelaties = v2RelatieZorgpartijRelaties

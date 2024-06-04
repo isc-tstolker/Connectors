@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenOndernemingVestiging Extends CONNECTORSPKG.VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenOndernemingVestiging Extends VektisAGB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
@@ -7,7 +7,7 @@ Class CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoorten
 /// Zorgsoortenhttp status code = 200 content-type = application/xml
 /// Zorgsoortenhttp status code = 200 content-type = text/xml
 /// Zorgsoorten
-Property ListOfReferentiegegevensZorgsoort As list Of CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort;
+Property ListOfReferentiegegevensZorgsoort As list Of VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort;
 
 /// Implement operationId : ReferentiegegevensZorgsoortenOndernemingVestiging
 /// get /v2/zorgsoorten/ondernemingvestiging
@@ -18,7 +18,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
 		Set array = [].%FromJSON(httpResponse.Data), iterator = array.%GetIterator()
 		While iterator.%GetNext(.index, .item) {
-			Set obj = ##class(CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort).%New()
+			Set obj = ##class(VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort).%New()
 			Do obj.%JSONImport(item), ..ListOfReferentiegegevensZorgsoort.Insert(obj)
 		}
 		Return sc
@@ -32,7 +32,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/xml",httpResponse.StatusCode = "200" {
 		Set reader = ##class(%XML.Reader).%New()
 		$$$QuitOnError(reader.OpenStream(httpResponse.Data))
-		Do reader.Correlate("Zorgsoort","CONNECTORSPKG.VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort")
+		Do reader.Correlate("Zorgsoort","VektisAGB.Api.Client.model.ReferentiegegevensZorgsoort")
 		While reader.Next(.ReferentiegegevensZorgsoort, .sc) {
 			Return:$$$ISERR(sc) sc
 			Do ..ListOfReferentiegegevensZorgsoort.Insert(ReferentiegegevensZorgsoort)

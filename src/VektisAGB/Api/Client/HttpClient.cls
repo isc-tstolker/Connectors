@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.VektisAGB.Api.Client.HttpClient Extends %RegisteredObject [ ProcedureBlock ]
+Class VektisAGB.Api.Client.HttpClient Extends %RegisteredObject [ ProcedureBlock ]
 {
 
 Parameter SERVER = "https://test-agb-api.vektis.nl/";
@@ -33,7 +33,7 @@ Method InitializeHttpRequestObject() As %Status
 
 /// Implement operationId : OndernemingBasisMetPeildatum
 /// get /v2/ondernemingen/{agbcode}/{peildatum}
-Method OndernemingBasisMetPeildatum(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingBasisMetPeildatum, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingBasisMetPeildatum = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingBasisMetPeildatum).%New()}) As %Status
+Method OndernemingBasisMetPeildatum(requestMessage As VektisAGB.Api.Client.requests.OndernemingBasisMetPeildatum, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingBasisMetPeildatum = {##class(VektisAGB.Api.Client.responses.OndernemingBasisMetPeildatum).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -44,7 +44,7 @@ Method OndernemingBasisMetPeildatum(requestMessage As CONNECTORSPKG.VektisAGB.Ap
 
 /// Implement operationId : OndernemingBasisinformatie
 /// get /v2/ondernemingen/{agbcode}
-Method OndernemingBasisinformatie(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingBasisinformatie, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingBasisinformatie = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingBasisinformatie).%New()}) As %Status
+Method OndernemingBasisinformatie(requestMessage As VektisAGB.Api.Client.requests.OndernemingBasisinformatie, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingBasisinformatie = {##class(VektisAGB.Api.Client.responses.OndernemingBasisinformatie).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -55,7 +55,7 @@ Method OndernemingBasisinformatie(requestMessage As CONNECTORSPKG.VektisAGB.Api.
 
 /// Implement operationId : OndernemingMutatiesMetZorgSoort
 /// get /v2/ondernemingen/mutaties/{zorgsoort}/{vanaf}
-Method OndernemingMutatiesMetZorgSoort(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingMutatiesMetZorgSoort, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingMutatiesMetZorgSoort = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingMutatiesMetZorgSoort).%New()}) As %Status
+Method OndernemingMutatiesMetZorgSoort(requestMessage As VektisAGB.Api.Client.requests.OndernemingMutatiesMetZorgSoort, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingMutatiesMetZorgSoort = {##class(VektisAGB.Api.Client.responses.OndernemingMutatiesMetZorgSoort).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -66,7 +66,7 @@ Method OndernemingMutatiesMetZorgSoort(requestMessage As CONNECTORSPKG.VektisAGB
 
 /// Implement operationId : OndernemingOndernemingOrganisatieV2
 /// get /v2/ondernemingen/{agbcode}/relaties/organisatie
-Method OndernemingOndernemingOrganisatieV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingOndernemingOrganisatieV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingOrganisatieV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingOrganisatieV2).%New()}) As %Status
+Method OndernemingOndernemingOrganisatieV2(requestMessage As VektisAGB.Api.Client.requests.OndernemingOndernemingOrganisatieV2, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingOndernemingOrganisatieV2 = {##class(VektisAGB.Api.Client.responses.OndernemingOndernemingOrganisatieV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -77,7 +77,7 @@ Method OndernemingOndernemingOrganisatieV2(requestMessage As CONNECTORSPKG.Vekti
 
 /// Implement operationId : OndernemingOndernemingRelatiesTotaalV2
 /// get /v2/ondernemingen/{agbcode}/relaties/totaal
-Method OndernemingOndernemingRelatiesTotaalV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingOndernemingRelatiesTotaalV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesTotaalV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesTotaalV2).%New()}) As %Status
+Method OndernemingOndernemingRelatiesTotaalV2(requestMessage As VektisAGB.Api.Client.requests.OndernemingOndernemingRelatiesTotaalV2, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesTotaalV2 = {##class(VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesTotaalV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -88,7 +88,7 @@ Method OndernemingOndernemingRelatiesTotaalV2(requestMessage As CONNECTORSPKG.Ve
 
 /// Implement operationId : OndernemingOndernemingRelatiesV2
 /// get /v2/ondernemingen/{agbcode}/relaties
-Method OndernemingOndernemingRelatiesV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingOndernemingRelatiesV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesV2).%New()}) As %Status
+Method OndernemingOndernemingRelatiesV2(requestMessage As VektisAGB.Api.Client.requests.OndernemingOndernemingRelatiesV2, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesV2 = {##class(VektisAGB.Api.Client.responses.OndernemingOndernemingRelatiesV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -99,7 +99,7 @@ Method OndernemingOndernemingRelatiesV2(requestMessage As CONNECTORSPKG.VektisAG
 
 /// Implement operationId : OndernemingOrganisatieMetPeildatumV2
 /// get /v2/ondernemingen/{agbcode}/relaties/organisatie/{peildatum}
-Method OndernemingOrganisatieMetPeildatumV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingOrganisatieMetPeildatumV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOrganisatieMetPeildatumV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingOrganisatieMetPeildatumV2).%New()}) As %Status
+Method OndernemingOrganisatieMetPeildatumV2(requestMessage As VektisAGB.Api.Client.requests.OndernemingOrganisatieMetPeildatumV2, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingOrganisatieMetPeildatumV2 = {##class(VektisAGB.Api.Client.responses.OndernemingOrganisatieMetPeildatumV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -110,7 +110,7 @@ Method OndernemingOrganisatieMetPeildatumV2(requestMessage As CONNECTORSPKG.Vekt
 
 /// Implement operationId : OndernemingRelatiesMetPeildatumV2
 /// get /v2/ondernemingen/{agbcode}/relaties/{peildatum}
-Method OndernemingRelatiesMetPeildatumV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingRelatiesMetPeildatumV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingRelatiesMetPeildatumV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingRelatiesMetPeildatumV2).%New()}) As %Status
+Method OndernemingRelatiesMetPeildatumV2(requestMessage As VektisAGB.Api.Client.requests.OndernemingRelatiesMetPeildatumV2, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingRelatiesMetPeildatumV2 = {##class(VektisAGB.Api.Client.responses.OndernemingRelatiesMetPeildatumV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -121,7 +121,7 @@ Method OndernemingRelatiesMetPeildatumV2(requestMessage As CONNECTORSPKG.VektisA
 
 /// Implement operationId : OndernemingZorgpartijMutaties
 /// get /v2/ondernemingen/mutaties/{vanaf}
-Method OndernemingZorgpartijMutaties(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.OndernemingZorgpartijMutaties, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingZorgpartijMutaties = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.OndernemingZorgpartijMutaties).%New()}) As %Status
+Method OndernemingZorgpartijMutaties(requestMessage As VektisAGB.Api.Client.requests.OndernemingZorgpartijMutaties, Output responseMessage As VektisAGB.Api.Client.responses.OndernemingZorgpartijMutaties = {##class(VektisAGB.Api.Client.responses.OndernemingZorgpartijMutaties).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -132,7 +132,7 @@ Method OndernemingZorgpartijMutaties(requestMessage As CONNECTORSPKG.VektisAGB.A
 
 /// Implement operationId : ReferentiegegevensAcademischeTitels
 /// get /v2/academischetitels
-Method ReferentiegegevensAcademischeTitels(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensAcademischeTitels, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensAcademischeTitels = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensAcademischeTitels).%New()}) As %Status
+Method ReferentiegegevensAcademischeTitels(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensAcademischeTitels, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensAcademischeTitels = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensAcademischeTitels).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -143,7 +143,7 @@ Method ReferentiegegevensAcademischeTitels(requestMessage As CONNECTORSPKG.Vekti
 
 /// Implement operationId : ReferentiegegevensAdresTypes
 /// get /v2/adrestypes
-Method ReferentiegegevensAdresTypes(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensAdresTypes, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensAdresTypes = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensAdresTypes).%New()}) As %Status
+Method ReferentiegegevensAdresTypes(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensAdresTypes, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensAdresTypes = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensAdresTypes).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -154,7 +154,7 @@ Method ReferentiegegevensAdresTypes(requestMessage As CONNECTORSPKG.VektisAGB.Ap
 
 /// Implement operationId : ReferentiegegevensArbeidsRelatieRollen
 /// get /v2/relaties/arbeidsrelatie/zorgverlener/rollen
-Method ReferentiegegevensArbeidsRelatieRollen(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensArbeidsRelatieRollen, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensArbeidsRelatieRollen = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensArbeidsRelatieRollen).%New()}) As %Status
+Method ReferentiegegevensArbeidsRelatieRollen(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensArbeidsRelatieRollen, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensArbeidsRelatieRollen = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensArbeidsRelatieRollen).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -165,7 +165,7 @@ Method ReferentiegegevensArbeidsRelatieRollen(requestMessage As CONNECTORSPKG.Ve
 
 /// Implement operationId : ReferentiegegevensBeheerders
 /// get /v2/beheerders
-Method ReferentiegegevensBeheerders(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensBeheerders, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensBeheerders = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensBeheerders).%New()}) As %Status
+Method ReferentiegegevensBeheerders(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensBeheerders, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensBeheerders = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensBeheerders).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -176,7 +176,7 @@ Method ReferentiegegevensBeheerders(requestMessage As CONNECTORSPKG.VektisAGB.Ap
 
 /// Implement operationId : ReferentiegegevensBekend
 /// get /v2/adres/correspondentie/{postcode}/{huisnummer}
-Method ReferentiegegevensBekend(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensBekend, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensBekend = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensBekend).%New()}) As %Status
+Method ReferentiegegevensBekend(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensBekend, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensBekend = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensBekend).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -187,7 +187,7 @@ Method ReferentiegegevensBekend(requestMessage As CONNECTORSPKG.VektisAGB.Api.Cl
 
 /// Implement operationId : ReferentiegegevensCommunicatieGegevenTypes
 /// get /v2/communicatiegegeventypes
-Method ReferentiegegevensCommunicatieGegevenTypes(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensCommunicatieGegevenTypes, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensCommunicatieGegevenTypes = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensCommunicatieGegevenTypes).%New()}) As %Status
+Method ReferentiegegevensCommunicatieGegevenTypes(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensCommunicatieGegevenTypes, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensCommunicatieGegevenTypes = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensCommunicatieGegevenTypes).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -198,7 +198,7 @@ Method ReferentiegegevensCommunicatieGegevenTypes(requestMessage As CONNECTORSPK
 
 /// Implement operationId : ReferentiegegevensDoelen
 /// get /v2/doelen
-Method ReferentiegegevensDoelen(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensDoelen, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensDoelen = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensDoelen).%New()}) As %Status
+Method ReferentiegegevensDoelen(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensDoelen, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensDoelen = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensDoelen).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -209,7 +209,7 @@ Method ReferentiegegevensDoelen(requestMessage As CONNECTORSPKG.VektisAGB.Api.Cl
 
 /// Implement operationId : ReferentiegegevensErkenningen
 /// get /v2/erkenningen
-Method ReferentiegegevensErkenningen(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensErkenningen, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensErkenningen = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensErkenningen).%New()}) As %Status
+Method ReferentiegegevensErkenningen(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensErkenningen, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensErkenningen = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensErkenningen).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -220,7 +220,7 @@ Method ReferentiegegevensErkenningen(requestMessage As CONNECTORSPKG.VektisAGB.A
 
 /// Implement operationId : ReferentiegegevensGeslachten
 /// get /v2/geslachten
-Method ReferentiegegevensGeslachten(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensGeslachten, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensGeslachten = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensGeslachten).%New()}) As %Status
+Method ReferentiegegevensGeslachten(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensGeslachten, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensGeslachten = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensGeslachten).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -231,7 +231,7 @@ Method ReferentiegegevensGeslachten(requestMessage As CONNECTORSPKG.VektisAGB.Ap
 
 /// Implement operationId : ReferentiegegevensKwalificaties
 /// get /v2/kwalificaties
-Method ReferentiegegevensKwalificaties(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensKwalificaties, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensKwalificaties = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensKwalificaties).%New()}) As %Status
+Method ReferentiegegevensKwalificaties(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensKwalificaties, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensKwalificaties = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensKwalificaties).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -242,7 +242,7 @@ Method ReferentiegegevensKwalificaties(requestMessage As CONNECTORSPKG.VektisAGB
 
 /// Implement operationId : ReferentiegegevensKwalificatiesOndernemingVestiging
 /// get /v2/kwalificaties/ondernemingvestiging
-Method ReferentiegegevensKwalificatiesOndernemingVestiging(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensKwalificatiesOndernemingVestiging, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensKwalificatiesOndernemingVestiging = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensKwalificatiesOndernemingVestiging).%New()}) As %Status
+Method ReferentiegegevensKwalificatiesOndernemingVestiging(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensKwalificatiesOndernemingVestiging, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensKwalificatiesOndernemingVestiging = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensKwalificatiesOndernemingVestiging).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -253,7 +253,7 @@ Method ReferentiegegevensKwalificatiesOndernemingVestiging(requestMessage As CON
 
 /// Implement operationId : ReferentiegegevensKwalificatiesZorgverlener
 /// get /v2/kwalificaties/zorgverlener
-Method ReferentiegegevensKwalificatiesZorgverlener(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensKwalificatiesZorgverlener, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensKwalificatiesZorgverlener = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensKwalificatiesZorgverlener).%New()}) As %Status
+Method ReferentiegegevensKwalificatiesZorgverlener(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensKwalificatiesZorgverlener, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensKwalificatiesZorgverlener = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensKwalificatiesZorgverlener).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -264,7 +264,7 @@ Method ReferentiegegevensKwalificatiesZorgverlener(requestMessage As CONNECTORSP
 
 /// Implement operationId : ReferentiegegevensLanden
 /// get /v2/landen
-Method ReferentiegegevensLanden(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensLanden, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensLanden = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensLanden).%New()}) As %Status
+Method ReferentiegegevensLanden(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensLanden, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensLanden = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensLanden).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -275,7 +275,7 @@ Method ReferentiegegevensLanden(requestMessage As CONNECTORSPKG.VektisAGB.Api.Cl
 
 /// Implement operationId : ReferentiegegevensProvincies
 /// get /v2/provincies
-Method ReferentiegegevensProvincies(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensProvincies, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensProvincies = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensProvincies).%New()}) As %Status
+Method ReferentiegegevensProvincies(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensProvincies, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensProvincies = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensProvincies).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -286,7 +286,7 @@ Method ReferentiegegevensProvincies(requestMessage As CONNECTORSPKG.VektisAGB.Ap
 
 /// Implement operationId : ReferentiegegevensRedenenEinde
 /// get /v2/redeneneinde
-Method ReferentiegegevensRedenenEinde(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensRedenenEinde, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRedenenEinde = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRedenenEinde).%New()}) As %Status
+Method ReferentiegegevensRedenenEinde(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensRedenenEinde, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensRedenenEinde = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensRedenenEinde).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -297,7 +297,7 @@ Method ReferentiegegevensRedenenEinde(requestMessage As CONNECTORSPKG.VektisAGB.
 
 /// Implement operationId : ReferentiegegevensRelatieRollen
 /// get /v2/relatierollen
-Method ReferentiegegevensRelatieRollen(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensRelatieRollen, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRelatieRollen = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRelatieRollen).%New()}) As %Status
+Method ReferentiegegevensRelatieRollen(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensRelatieRollen, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensRelatieRollen = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensRelatieRollen).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -308,7 +308,7 @@ Method ReferentiegegevensRelatieRollen(requestMessage As CONNECTORSPKG.VektisAGB
 
 /// Implement operationId : ReferentiegegevensRelatieTypes
 /// get /v2/relatietypes
-Method ReferentiegegevensRelatieTypes(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensRelatieTypes, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRelatieTypes = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensRelatieTypes).%New()}) As %Status
+Method ReferentiegegevensRelatieTypes(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensRelatieTypes, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensRelatieTypes = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensRelatieTypes).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -319,7 +319,7 @@ Method ReferentiegegevensRelatieTypes(requestMessage As CONNECTORSPKG.VektisAGB.
 
 /// Implement operationId : ReferentiegegevensVoorvoegsels
 /// get /v2/voorvoegsels
-Method ReferentiegegevensVoorvoegsels(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensVoorvoegsels, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensVoorvoegsels = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensVoorvoegsels).%New()}) As %Status
+Method ReferentiegegevensVoorvoegsels(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensVoorvoegsels, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensVoorvoegsels = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensVoorvoegsels).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -330,7 +330,7 @@ Method ReferentiegegevensVoorvoegsels(requestMessage As CONNECTORSPKG.VektisAGB.
 
 /// Implement operationId : ReferentiegegevensWerkzaamBijRollen
 /// get /v2/relaties/werkzaambij/zorgverlener/rollen
-Method ReferentiegegevensWerkzaamBijRollen(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensWerkzaamBijRollen, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensWerkzaamBijRollen = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensWerkzaamBijRollen).%New()}) As %Status
+Method ReferentiegegevensWerkzaamBijRollen(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensWerkzaamBijRollen, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensWerkzaamBijRollen = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensWerkzaamBijRollen).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -341,7 +341,7 @@ Method ReferentiegegevensWerkzaamBijRollen(requestMessage As CONNECTORSPKG.Vekti
 
 /// Implement operationId : ReferentiegegevensZorgpartijTypes
 /// get /v2/zorgpartijtypes
-Method ReferentiegegevensZorgpartijTypes(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensZorgpartijTypes, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensZorgpartijTypes = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensZorgpartijTypes).%New()}) As %Status
+Method ReferentiegegevensZorgpartijTypes(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensZorgpartijTypes, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensZorgpartijTypes = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensZorgpartijTypes).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -352,7 +352,7 @@ Method ReferentiegegevensZorgpartijTypes(requestMessage As CONNECTORSPKG.VektisA
 
 /// Implement operationId : ReferentiegegevensZorgsoortenOndernemingVestiging
 /// get /v2/zorgsoorten/ondernemingvestiging
-Method ReferentiegegevensZorgsoortenOndernemingVestiging(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensZorgsoortenOndernemingVestiging, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenOndernemingVestiging = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenOndernemingVestiging).%New()}) As %Status
+Method ReferentiegegevensZorgsoortenOndernemingVestiging(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensZorgsoortenOndernemingVestiging, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenOndernemingVestiging = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenOndernemingVestiging).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -363,7 +363,7 @@ Method ReferentiegegevensZorgsoortenOndernemingVestiging(requestMessage As CONNE
 
 /// Implement operationId : ReferentiegegevensZorgsoortenZorgverlener
 /// get /v2/zorgsoorten/zorgverlener
-Method ReferentiegegevensZorgsoortenZorgverlener(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ReferentiegegevensZorgsoortenZorgverlener, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenZorgverlener = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenZorgverlener).%New()}) As %Status
+Method ReferentiegegevensZorgsoortenZorgverlener(requestMessage As VektisAGB.Api.Client.requests.ReferentiegegevensZorgsoortenZorgverlener, Output responseMessage As VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenZorgverlener = {##class(VektisAGB.Api.Client.responses.ReferentiegegevensZorgsoortenZorgverlener).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -374,7 +374,7 @@ Method ReferentiegegevensZorgsoortenZorgverlener(requestMessage As CONNECTORSPKG
 
 /// Implement operationId : TestGet
 /// get /v2/test/{number}
-Method TestGet(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.TestGet, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.TestGet = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.TestGet).%New()}) As %Status
+Method TestGet(requestMessage As VektisAGB.Api.Client.requests.TestGet, Output responseMessage As VektisAGB.Api.Client.responses.TestGet = {##class(VektisAGB.Api.Client.responses.TestGet).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -385,7 +385,7 @@ Method TestGet(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.Tes
 
 /// Implement operationId : VestigingBasisinformatie
 /// get /v2/vestigingen/{agbcode}
-Method VestigingBasisinformatie(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.VestigingBasisinformatie, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingBasisinformatie = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingBasisinformatie).%New()}) As %Status
+Method VestigingBasisinformatie(requestMessage As VektisAGB.Api.Client.requests.VestigingBasisinformatie, Output responseMessage As VektisAGB.Api.Client.responses.VestigingBasisinformatie = {##class(VektisAGB.Api.Client.responses.VestigingBasisinformatie).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -396,7 +396,7 @@ Method VestigingBasisinformatie(requestMessage As CONNECTORSPKG.VektisAGB.Api.Cl
 
 /// Implement operationId : VestigingMetPeildatum
 /// get /v2/vestigingen/{agbcode}/{peildatum}
-Method VestigingMetPeildatum(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.VestigingMetPeildatum, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingMetPeildatum = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingMetPeildatum).%New()}) As %Status
+Method VestigingMetPeildatum(requestMessage As VektisAGB.Api.Client.requests.VestigingMetPeildatum, Output responseMessage As VektisAGB.Api.Client.responses.VestigingMetPeildatum = {##class(VektisAGB.Api.Client.responses.VestigingMetPeildatum).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -407,7 +407,7 @@ Method VestigingMetPeildatum(requestMessage As CONNECTORSPKG.VektisAGB.Api.Clien
 
 /// Implement operationId : VestigingMutatiesMetZorgsoort
 /// get /v2/vestigingen/mutaties/{zorgsoort}/{vanaf}
-Method VestigingMutatiesMetZorgsoort(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.VestigingMutatiesMetZorgsoort, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingMutatiesMetZorgsoort = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingMutatiesMetZorgsoort).%New()}) As %Status
+Method VestigingMutatiesMetZorgsoort(requestMessage As VektisAGB.Api.Client.requests.VestigingMutatiesMetZorgsoort, Output responseMessage As VektisAGB.Api.Client.responses.VestigingMutatiesMetZorgsoort = {##class(VektisAGB.Api.Client.responses.VestigingMutatiesMetZorgsoort).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -418,7 +418,7 @@ Method VestigingMutatiesMetZorgsoort(requestMessage As CONNECTORSPKG.VektisAGB.A
 
 /// Implement operationId : VestigingRelatiesMetPeildatumV2
 /// get /v2/vestigingen/{agbcode}/relaties/{peildatum}
-Method VestigingRelatiesMetPeildatumV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.VestigingRelatiesMetPeildatumV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingRelatiesMetPeildatumV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingRelatiesMetPeildatumV2).%New()}) As %Status
+Method VestigingRelatiesMetPeildatumV2(requestMessage As VektisAGB.Api.Client.requests.VestigingRelatiesMetPeildatumV2, Output responseMessage As VektisAGB.Api.Client.responses.VestigingRelatiesMetPeildatumV2 = {##class(VektisAGB.Api.Client.responses.VestigingRelatiesMetPeildatumV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -429,7 +429,7 @@ Method VestigingRelatiesMetPeildatumV2(requestMessage As CONNECTORSPKG.VektisAGB
 
 /// Implement operationId : VestigingVestigingRelatiesTotaalV2
 /// get /v2/vestigingen/{agbcode}/relaties/totaal
-Method VestigingVestigingRelatiesTotaalV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.VestigingVestigingRelatiesTotaalV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingVestigingRelatiesTotaalV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingVestigingRelatiesTotaalV2).%New()}) As %Status
+Method VestigingVestigingRelatiesTotaalV2(requestMessage As VektisAGB.Api.Client.requests.VestigingVestigingRelatiesTotaalV2, Output responseMessage As VektisAGB.Api.Client.responses.VestigingVestigingRelatiesTotaalV2 = {##class(VektisAGB.Api.Client.responses.VestigingVestigingRelatiesTotaalV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -440,7 +440,7 @@ Method VestigingVestigingRelatiesTotaalV2(requestMessage As CONNECTORSPKG.Vektis
 
 /// Implement operationId : VestigingVestigingRelatiesV2
 /// get /v2/vestigingen/{agbcode}/relaties
-Method VestigingVestigingRelatiesV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.VestigingVestigingRelatiesV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingVestigingRelatiesV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingVestigingRelatiesV2).%New()}) As %Status
+Method VestigingVestigingRelatiesV2(requestMessage As VektisAGB.Api.Client.requests.VestigingVestigingRelatiesV2, Output responseMessage As VektisAGB.Api.Client.responses.VestigingVestigingRelatiesV2 = {##class(VektisAGB.Api.Client.responses.VestigingVestigingRelatiesV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -451,7 +451,7 @@ Method VestigingVestigingRelatiesV2(requestMessage As CONNECTORSPKG.VektisAGB.Ap
 
 /// Implement operationId : VestigingZorgpartijMutaties
 /// get /v2/vestigingen/mutaties/{vanaf}
-Method VestigingZorgpartijMutaties(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.VestigingZorgpartijMutaties, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingZorgpartijMutaties = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.VestigingZorgpartijMutaties).%New()}) As %Status
+Method VestigingZorgpartijMutaties(requestMessage As VektisAGB.Api.Client.requests.VestigingZorgpartijMutaties, Output responseMessage As VektisAGB.Api.Client.responses.VestigingZorgpartijMutaties = {##class(VektisAGB.Api.Client.responses.VestigingZorgpartijMutaties).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -462,7 +462,7 @@ Method VestigingZorgpartijMutaties(requestMessage As CONNECTORSPKG.VektisAGB.Api
 
 /// Implement operationId : ZorgpartijMutatiesMetZorgsoort
 /// get /v2/zorgpartijen/mutaties/{zorgsoort}/{vanaf}
-Method ZorgpartijMutatiesMetZorgsoort(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgpartijMutatiesMetZorgsoort, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgpartijMutatiesMetZorgsoort = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgpartijMutatiesMetZorgsoort).%New()}) As %Status
+Method ZorgpartijMutatiesMetZorgsoort(requestMessage As VektisAGB.Api.Client.requests.ZorgpartijMutatiesMetZorgsoort, Output responseMessage As VektisAGB.Api.Client.responses.ZorgpartijMutatiesMetZorgsoort = {##class(VektisAGB.Api.Client.responses.ZorgpartijMutatiesMetZorgsoort).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -473,7 +473,7 @@ Method ZorgpartijMutatiesMetZorgsoort(requestMessage As CONNECTORSPKG.VektisAGB.
 
 /// Implement operationId : ZorgpartijZorgpartijMutaties
 /// get /v2/zorgpartijen/mutaties/{vanaf}
-Method ZorgpartijZorgpartijMutaties(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgpartijZorgpartijMutaties, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgpartijZorgpartijMutaties = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgpartijZorgpartijMutaties).%New()}) As %Status
+Method ZorgpartijZorgpartijMutaties(requestMessage As VektisAGB.Api.Client.requests.ZorgpartijZorgpartijMutaties, Output responseMessage As VektisAGB.Api.Client.responses.ZorgpartijZorgpartijMutaties = {##class(VektisAGB.Api.Client.responses.ZorgpartijZorgpartijMutaties).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -484,7 +484,7 @@ Method ZorgpartijZorgpartijMutaties(requestMessage As CONNECTORSPKG.VektisAGB.Ap
 
 /// Implement operationId : ZorgverlenerBasisMetPeildatum
 /// get /v2/zorgverleners/{agbcode}/{peildatum}
-Method ZorgverlenerBasisMetPeildatum(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgverlenerBasisMetPeildatum, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerBasisMetPeildatum = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerBasisMetPeildatum).%New()}) As %Status
+Method ZorgverlenerBasisMetPeildatum(requestMessage As VektisAGB.Api.Client.requests.ZorgverlenerBasisMetPeildatum, Output responseMessage As VektisAGB.Api.Client.responses.ZorgverlenerBasisMetPeildatum = {##class(VektisAGB.Api.Client.responses.ZorgverlenerBasisMetPeildatum).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -495,7 +495,7 @@ Method ZorgverlenerBasisMetPeildatum(requestMessage As CONNECTORSPKG.VektisAGB.A
 
 /// Implement operationId : ZorgverlenerBasisinformatie
 /// get /v2/zorgverleners/{agbcode}
-Method ZorgverlenerBasisinformatie(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgverlenerBasisinformatie, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerBasisinformatie = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerBasisinformatie).%New()}) As %Status
+Method ZorgverlenerBasisinformatie(requestMessage As VektisAGB.Api.Client.requests.ZorgverlenerBasisinformatie, Output responseMessage As VektisAGB.Api.Client.responses.ZorgverlenerBasisinformatie = {##class(VektisAGB.Api.Client.responses.ZorgverlenerBasisinformatie).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -506,7 +506,7 @@ Method ZorgverlenerBasisinformatie(requestMessage As CONNECTORSPKG.VektisAGB.Api
 
 /// Implement operationId : ZorgverlenerMutatiesMetZorgsoort
 /// get /v2/zorgverleners/mutaties/{zorgsoort}/{vanaf}
-Method ZorgverlenerMutatiesMetZorgsoort(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgverlenerMutatiesMetZorgsoort, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerMutatiesMetZorgsoort = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerMutatiesMetZorgsoort).%New()}) As %Status
+Method ZorgverlenerMutatiesMetZorgsoort(requestMessage As VektisAGB.Api.Client.requests.ZorgverlenerMutatiesMetZorgsoort, Output responseMessage As VektisAGB.Api.Client.responses.ZorgverlenerMutatiesMetZorgsoort = {##class(VektisAGB.Api.Client.responses.ZorgverlenerMutatiesMetZorgsoort).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -517,7 +517,7 @@ Method ZorgverlenerMutatiesMetZorgsoort(requestMessage As CONNECTORSPKG.VektisAG
 
 /// Implement operationId : ZorgverlenerRelatiesMetPeildatumV2
 /// get /v2/zorgverleners/{agbcode}/relaties/{peildatum}
-Method ZorgverlenerRelatiesMetPeildatumV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgverlenerRelatiesMetPeildatumV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerRelatiesMetPeildatumV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerRelatiesMetPeildatumV2).%New()}) As %Status
+Method ZorgverlenerRelatiesMetPeildatumV2(requestMessage As VektisAGB.Api.Client.requests.ZorgverlenerRelatiesMetPeildatumV2, Output responseMessage As VektisAGB.Api.Client.responses.ZorgverlenerRelatiesMetPeildatumV2 = {##class(VektisAGB.Api.Client.responses.ZorgverlenerRelatiesMetPeildatumV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -528,7 +528,7 @@ Method ZorgverlenerRelatiesMetPeildatumV2(requestMessage As CONNECTORSPKG.Vektis
 
 /// Implement operationId : ZorgverlenerZorgpartijMutaties
 /// get /v2/zorgverleners/mutaties/{vanaf}
-Method ZorgverlenerZorgpartijMutaties(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgverlenerZorgpartijMutaties, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerZorgpartijMutaties = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerZorgpartijMutaties).%New()}) As %Status
+Method ZorgverlenerZorgpartijMutaties(requestMessage As VektisAGB.Api.Client.requests.ZorgverlenerZorgpartijMutaties, Output responseMessage As VektisAGB.Api.Client.responses.ZorgverlenerZorgpartijMutaties = {##class(VektisAGB.Api.Client.responses.ZorgverlenerZorgpartijMutaties).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -539,7 +539,7 @@ Method ZorgverlenerZorgpartijMutaties(requestMessage As CONNECTORSPKG.VektisAGB.
 
 /// Implement operationId : ZorgverlenerZorgverlenerRelatiesTotaalV2
 /// get /v2/zorgverleners/{agbcode}/relaties/totaal
-Method ZorgverlenerZorgverlenerRelatiesTotaalV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgverlenerZorgverlenerRelatiesTotaalV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerZorgverlenerRelatiesTotaalV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerZorgverlenerRelatiesTotaalV2).%New()}) As %Status
+Method ZorgverlenerZorgverlenerRelatiesTotaalV2(requestMessage As VektisAGB.Api.Client.requests.ZorgverlenerZorgverlenerRelatiesTotaalV2, Output responseMessage As VektisAGB.Api.Client.responses.ZorgverlenerZorgverlenerRelatiesTotaalV2 = {##class(VektisAGB.Api.Client.responses.ZorgverlenerZorgverlenerRelatiesTotaalV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
@@ -550,7 +550,7 @@ Method ZorgverlenerZorgverlenerRelatiesTotaalV2(requestMessage As CONNECTORSPKG.
 
 /// Implement operationId : ZorgverlenerZorgverlenerRelatiesV2
 /// get /v2/zorgverleners/{agbcode}/relaties
-Method ZorgverlenerZorgverlenerRelatiesV2(requestMessage As CONNECTORSPKG.VektisAGB.Api.Client.requests.ZorgverlenerZorgverlenerRelatiesV2, Output responseMessage As CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerZorgverlenerRelatiesV2 = {##class(CONNECTORSPKG.VektisAGB.Api.Client.responses.ZorgverlenerZorgverlenerRelatiesV2).%New()}) As %Status
+Method ZorgverlenerZorgverlenerRelatiesV2(requestMessage As VektisAGB.Api.Client.requests.ZorgverlenerZorgverlenerRelatiesV2, Output responseMessage As VektisAGB.Api.Client.responses.ZorgverlenerZorgverlenerRelatiesV2 = {##class(VektisAGB.Api.Client.responses.ZorgverlenerZorgverlenerRelatiesV2).%New()}) As %Status
 {
 	Set sc = $$$OK
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(..HttpRequest))
