@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.OrganizationSummary Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.OrganizationSummary Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 Property applicationIds As list Of %String(MAXLEN = "");
@@ -12,7 +12,7 @@ Property self As %String(%JSONFIELDNAME = "_self", MAXLEN = "");
 /// Deprecated. Supported until 31-12-2020
 Property type As list Of %String(MAXLEN = "");
 
-Property types As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Type;
+Property types As list Of ZorgAB.Api.Client.model.Type;
 
 Property ura As %String(MAXLEN = "");
 

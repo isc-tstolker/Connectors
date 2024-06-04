@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.applicationsapplicationIdGET Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.applicationsapplicationIdGET Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
 /// Status 200
-Property LSPApplication As CONNECTORSPKG.ZorgAB.Api.Client.model.LSPApplication;
+Property LSPApplication As ZorgAB.Api.Client.model.LSPApplication;
 
 /// Implement operationId : applicationsapplicationIdGET
 /// get /applications/{applicationId}
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
-		Set ..LSPApplication = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.LSPApplication).%New()
+		Set ..LSPApplication = ##class(ZorgAB.Api.Client.model.LSPApplication).%New()
 		Set ..status = ..LSPApplication.%JSONImport(httpResponse.Data)
 		Return sc
 	}

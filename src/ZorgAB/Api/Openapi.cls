@@ -1,17 +1,17 @@
 /// OpenAPI spec for VektisAGB
-Class CONNECTORSPKG.ZorgAB.Api.Openapi
+Class ZorgAB.Api.Openapi
 {
 
 /// Delete API
 ClassMethod DeleteAll()
 {
-    Do $SYSTEM.OBJ.DeletePackage("CONNECTORSPKG.ZorgAB.Api.Client")
+    Do $SYSTEM.OBJ.DeletePackage("ZorgAB.Api.Client")
 }
 
 /// Generate ZorgAB API
 ClassMethod GenerateAll() As %Status
 {
-    return ..Generate("CONNECTORSPKG.ZorgAB.Api.Client", "https://vzvznl.github.io/VZVZ-FHIR-api/openapi-zorgab-odata.yml")
+    return ..Generate("ZorgAB.Api.Client", "https://vzvznl.github.io/VZVZ-FHIR-api/openapi-zorgab-odata.yml")
 }
 
 /// Generate API helper

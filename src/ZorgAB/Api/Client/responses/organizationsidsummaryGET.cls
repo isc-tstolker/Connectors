@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.organizationsidsummaryGET Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.organizationsidsummaryGET Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
 /// Status 200
-Property OrganizationSummary As CONNECTORSPKG.ZorgAB.Api.Client.model.OrganizationSummary;
+Property OrganizationSummary As ZorgAB.Api.Client.model.OrganizationSummary;
 
 /// Implement operationId : organizationsidsummaryGET
 /// get /organizations/{id}/_summary
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
-		Set ..OrganizationSummary = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.OrganizationSummary).%New()
+		Set ..OrganizationSummary = ##class(ZorgAB.Api.Client.model.OrganizationSummary).%New()
 		Set ..status = ..OrganizationSummary.%JSONImport(httpResponse.Data)
 		Return sc
 	}

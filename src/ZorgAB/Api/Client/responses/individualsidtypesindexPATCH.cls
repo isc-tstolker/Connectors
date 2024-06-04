@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.individualsidtypesindexPATCH Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.individualsidtypesindexPATCH Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 202 content-type = application/json
 /// Status 202
-Property Type As CONNECTORSPKG.ZorgAB.Api.Client.model.Type;
+Property Type As ZorgAB.Api.Client.model.Type;
 
 /// Implement operationId : individualsidtypesindexPATCH
 /// patch /individuals/{id}/types/{index}
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "202" {
-		Set ..Type = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.Type).%New()
+		Set ..Type = ##class(ZorgAB.Api.Client.model.Type).%New()
 		Set ..status = ..Type.%JSONImport(httpResponse.Data)
 		Return sc
 	}

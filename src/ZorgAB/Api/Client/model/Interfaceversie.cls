@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.Interfaceversie Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.Interfaceversie Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 Property interfaceversieId As %String(MAXLEN = "");

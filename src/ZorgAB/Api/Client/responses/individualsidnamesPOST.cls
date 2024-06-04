@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.individualsidnamesPOST Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.individualsidnamesPOST Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 201 content-type = application/json
 /// Status 201
-Property IndividualName As CONNECTORSPKG.ZorgAB.Api.Client.model.IndividualName;
+Property IndividualName As ZorgAB.Api.Client.model.IndividualName;
 
 /// Implement operationId : individualsidnamesPOST
 /// post /individuals/{id}/names
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "201" {
-		Set ..IndividualName = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.IndividualName).%New()
+		Set ..IndividualName = ##class(ZorgAB.Api.Client.model.IndividualName).%New()
 		Set ..status = ..IndividualName.%JSONImport(httpResponse.Data)
 		Return sc
 	}

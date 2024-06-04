@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.spec Extends %RegisteredObject [ ProcedureBlock ]
+Class ZorgAB.Api.Client.model.spec Extends %RegisteredObject [ ProcedureBlock ]
 {
 
 XData OpenAPI [ MimeType = application/json ]

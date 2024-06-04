@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.WorksAtInput Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.WorksAtInput Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 Property availability As %String(MAXLEN = "");
@@ -13,7 +13,7 @@ Property organizationId As %String(MAXLEN = "");
 
 Property speciality As %String(MAXLEN = "");
 
-Property telecoms As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Telecom;
+Property telecoms As list Of ZorgAB.Api.Client.model.Telecom;
 
 Storage Default
 {

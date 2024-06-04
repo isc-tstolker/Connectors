@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.carePartiesGET Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.carePartiesGET Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 200 content-type = application/json
 /// Status 200
-Property OrganizationOrIndividualOrWorksAt As CONNECTORSPKG.ZorgAB.Api.Client.model.OrganizationOrIndividualOrWorksAt;
+Property OrganizationOrIndividualOrWorksAt As ZorgAB.Api.Client.model.OrganizationOrIndividualOrWorksAt;
 
 /// Implement operationId : carePartiesGET
 /// get /careParties
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "200" {
-		Set ..OrganizationOrIndividualOrWorksAt = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.OrganizationOrIndividualOrWorksAt).%New()
+		Set ..OrganizationOrIndividualOrWorksAt = ##class(ZorgAB.Api.Client.model.OrganizationOrIndividualOrWorksAt).%New()
 		Set ..status = ..OrganizationOrIndividualOrWorksAt.%JSONImport(httpResponse.Data)
 		Return sc
 	}

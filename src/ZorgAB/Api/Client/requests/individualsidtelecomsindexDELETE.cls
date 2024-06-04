@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.requests.individualsidtelecomsindexDELETE Extends Ens.Request [ ProcedureBlock ]
+Class ZorgAB.Api.Client.requests.individualsidtelecomsindexDELETE Extends Ens.Request [ ProcedureBlock ]
 {
 
 Parameter METHOD = "delete";

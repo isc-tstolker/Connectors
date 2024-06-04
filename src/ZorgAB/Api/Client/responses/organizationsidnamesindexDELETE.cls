@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.organizationsidnamesindexDELETE Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.organizationsidnamesindexDELETE Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// Implement operationId : organizationsidnamesindexDELETE

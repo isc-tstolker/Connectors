@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.Type Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.Type Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 Property active As %Boolean [ InitialExpression = "1" ];
@@ -41,7 +41,7 @@ Storage Default
 </Value>
 </Data>
 <State>TypeState</State>
-<StreamLocation>^CONNECTORSPKG.ZorgAB34FF.TypeS</StreamLocation>
+<StreamLocation>^ZorgAB34FF.TypeS</StreamLocation>
 <Type>%Storage.Serial</Type>
 }
 

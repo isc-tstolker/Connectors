@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.subOrganizationDELETE Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.subOrganizationDELETE Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// Implement operationId : subOrganizationDELETE

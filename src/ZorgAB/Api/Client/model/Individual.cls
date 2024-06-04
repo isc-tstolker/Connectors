@@ -1,11 +1,11 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.Individual Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.Individual Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 Property active As %Boolean [ InitialExpression = "1" ];
 
-Property addresses As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Address;
+Property addresses As list Of ZorgAB.Api.Client.model.Address;
 
-Property attachments As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Attachment;
+Property attachments As list Of ZorgAB.Api.Client.model.Attachment;
 
 Property author As %String(MAXLEN = "");
 
@@ -13,33 +13,33 @@ Property className As %String(%JSONFIELDNAME = "_className", MAXLEN = "");
 
 Property comment As %String(MAXLEN = "");
 
-Property credentials As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Credential;
+Property credentials As list Of ZorgAB.Api.Client.model.Credential;
 
 Property displayName As %String(MAXLEN = "");
 
 Property doB As %String(MAXLEN = "");
 
-Property electronicServices As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.ElectronicService;
+Property electronicServices As list Of ZorgAB.Api.Client.model.ElectronicService;
 
 Property gender As %String(MAXLEN = "", VALUELIST = ",male,female,other,unknown");
 
 Property id As %String(%JSONFIELDNAME = "_id", MAXLEN = "");
 
-Property identifications As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Identification;
+Property identifications As list Of ZorgAB.Api.Client.model.Identification;
 
 Property languages As list Of %String(MAXLEN = "");
 
-Property names As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.IndividualName;
+Property names As list Of ZorgAB.Api.Client.model.IndividualName;
 
 Property self As %String(%JSONFIELDNAME = "_self", MAXLEN = "");
 
 Property speciality As %String(MAXLEN = "");
 
-Property telecoms As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Telecom;
+Property telecoms As list Of ZorgAB.Api.Client.model.Telecom;
 
 Property timestamp As %String(MAXLEN = "");
 
-Property types As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Type;
+Property types As list Of ZorgAB.Api.Client.model.Type;
 
 Property uzi As %String(MAXLEN = "");
 

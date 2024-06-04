@@ -1,7 +1,7 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.ElectronicService Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.ElectronicService Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
-Property abonneren As CONNECTORSPKG.ZorgAB.Api.Client.model.Abonneren;
+Property abonneren As ZorgAB.Api.Client.model.Abonneren;
 
 /// Deprecated for objects of type LSP Application. Supported for objects of type LSP Application until 31-12-2021
 Property active As %Boolean [ InitialExpression = "1" ];
@@ -12,11 +12,11 @@ Property applicationId As %String(MAXLEN = "");
 
 Property author As %String(MAXLEN = "");
 
-Property authorizationEndpoint As CONNECTORSPKG.ZorgAB.Api.Client.model.AuthorizationEndpoint;
+Property authorizationEndpoint As ZorgAB.Api.Client.model.AuthorizationEndpoint;
 
 Property className As %String(%JSONFIELDNAME = "_className", MAXLEN = "");
 
-Property conformances As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Conformance;
+Property conformances As list Of ZorgAB.Api.Client.model.Conformance;
 
 Property description As %String(MAXLEN = "");
 
@@ -26,17 +26,17 @@ Property id As %String(MAXLEN = "");
 
 Property index As %String(MAXLEN = "");
 
-Property interfaceversies As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Interfaceversie;
+Property interfaceversies As list Of ZorgAB.Api.Client.model.Interfaceversie;
 
 Property status As %String(MAXLEN = "");
 
-Property systeemrollen As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Systeemrol;
+Property systeemrollen As list Of ZorgAB.Api.Client.model.Systeemrol;
 
 Property systemRoles As list Of %String(MAXLEN = "");
 
 Property timestamp As %String(MAXLEN = "");
 
-Property tokenEndpoint As CONNECTORSPKG.ZorgAB.Api.Client.model.TokenEndpoint;
+Property tokenEndpoint As ZorgAB.Api.Client.model.TokenEndpoint;
 
 Property type As %String(MAXLEN = "");
 

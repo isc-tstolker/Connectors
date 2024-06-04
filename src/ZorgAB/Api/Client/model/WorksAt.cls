@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.WorksAt Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.WorksAt Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 Property author As %String(MAXLEN = "");
@@ -17,7 +17,7 @@ Property self As %String(%JSONFIELDNAME = "_self", MAXLEN = "");
 
 Property speciality As %String(MAXLEN = "");
 
-Property telecoms As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Telecom;
+Property telecoms As list Of ZorgAB.Api.Client.model.Telecom;
 
 Property timestamp As %String(MAXLEN = "");
 

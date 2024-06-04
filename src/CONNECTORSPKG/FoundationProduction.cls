@@ -10,7 +10,7 @@ XData ProductionDefinition
   <Item Name="VektisAGB" Category="" ClassName="VektisAGB.Api.Client.bo.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="HTTPPort">443</Setting>
   </Item>
-  <Item Name="ZorgAB" Category="" ClassName="CONNECTORSPKG.ZorgAB.Api.Client.bo.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="ZorgAB" Category="" ClassName="ZorgAB.Api.Client.bo.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="HTTPPort">443</Setting>
     <Setting Target="Adapter" Name="URL">/zab-ro</Setting>
   </Item>

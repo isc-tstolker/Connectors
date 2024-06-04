@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.requests.organizationsidaddressesindexPATCH Extends Ens.Request [ ProcedureBlock ]
+Class ZorgAB.Api.Client.requests.organizationsidaddressesindexPATCH Extends Ens.Request [ ProcedureBlock ]
 {
 
 Parameter METHOD = "patch";
@@ -12,7 +12,7 @@ Property %ContentType As %String(MAXLEN = "") [ InitialExpression = "application
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// Use this property for body content with content-type = application/json.
-Property AddressInput As CONNECTORSPKG.ZorgAB.Api.Client.model.AddressInput;
+Property AddressInput As ZorgAB.Api.Client.model.AddressInput;
 
 Property pathid As %String(MAXLEN = "");
 

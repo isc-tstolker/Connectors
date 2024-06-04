@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.organizationsidservicesPOST Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.organizationsidservicesPOST Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 201 content-type = application/json
 /// Status 201
-Property ElectronicService As CONNECTORSPKG.ZorgAB.Api.Client.model.ElectronicService;
+Property ElectronicService As ZorgAB.Api.Client.model.ElectronicService;
 
 /// Implement operationId : organizationsidservicesPOST
 /// post /organizations/{id}/services
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "201" {
-		Set ..ElectronicService = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.ElectronicService).%New()
+		Set ..ElectronicService = ##class(ZorgAB.Api.Client.model.ElectronicService).%New()
 		Set ..status = ..ElectronicService.%JSONImport(httpResponse.Data)
 		Return sc
 	}

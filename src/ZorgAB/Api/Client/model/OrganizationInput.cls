@@ -1,28 +1,28 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.OrganizationInput Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.OrganizationInput Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
-Property addresses As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.AddressInput;
+Property addresses As list Of ZorgAB.Api.Client.model.AddressInput;
 
-Property attachments As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.AttachmentInput;
+Property attachments As list Of ZorgAB.Api.Client.model.AttachmentInput;
 
 Property comment As %String(MAXLEN = "");
 
-Property credentials As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.CredentialInput;
+Property credentials As list Of ZorgAB.Api.Client.model.CredentialInput;
 
-Property electronicServices As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.ElectronicServiceInput;
+Property electronicServices As list Of ZorgAB.Api.Client.model.ElectronicServiceInput;
 
-Property identifications As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.IdentificationInput;
+Property identifications As list Of ZorgAB.Api.Client.model.IdentificationInput;
 
-Property names As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.OrganizationNameInput;
+Property names As list Of ZorgAB.Api.Client.model.OrganizationNameInput;
 
 Property speciality As %String(MAXLEN = "");
 
-Property telecoms As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.TelecomInput;
+Property telecoms As list Of ZorgAB.Api.Client.model.TelecomInput;
 
 /// Deprecated. Supported until 31-12-2020
 Property type As list Of %String(MAXLEN = "");
 
-Property types As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.TypeInput;
+Property types As list Of ZorgAB.Api.Client.model.TypeInput;
 
 Storage Default
 {

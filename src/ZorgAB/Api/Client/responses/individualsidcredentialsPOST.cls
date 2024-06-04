@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.individualsidcredentialsPOST Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.individualsidcredentialsPOST Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 201 content-type = application/json
 /// Status 201
-Property Credential As CONNECTORSPKG.ZorgAB.Api.Client.model.Credential;
+Property Credential As ZorgAB.Api.Client.model.Credential;
 
 /// Implement operationId : individualsidcredentialsPOST
 /// post /individuals/{id}/credentials
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "201" {
-		Set ..Credential = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.Credential).%New()
+		Set ..Credential = ##class(ZorgAB.Api.Client.model.Credential).%New()
 		Set ..status = ..Credential.%JSONImport(httpResponse.Data)
 		Return sc
 	}

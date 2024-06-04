@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.organizationsididentificationsindexPATCH Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.organizationsididentificationsindexPATCH Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 202 content-type = application/json
 /// Status 202
-Property Identification As CONNECTORSPKG.ZorgAB.Api.Client.model.Identification;
+Property Identification As ZorgAB.Api.Client.model.Identification;
 
 /// Implement operationId : organizationsididentificationsindexPATCH
 /// patch /organizations/{id}/identifications/{index}
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "202" {
-		Set ..Identification = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.Identification).%New()
+		Set ..Identification = ##class(ZorgAB.Api.Client.model.Identification).%New()
 		Set ..status = ..Identification.%JSONImport(httpResponse.Data)
 		Return sc
 	}

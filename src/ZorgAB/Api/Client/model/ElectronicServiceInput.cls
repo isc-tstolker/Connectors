@@ -1,13 +1,13 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.ElectronicServiceInput Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.ElectronicServiceInput Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
-Property abonneren As CONNECTORSPKG.ZorgAB.Api.Client.model.Abonneren;
+Property abonneren As ZorgAB.Api.Client.model.Abonneren;
 
 Property active As %Boolean [ InitialExpression = "1" ];
 
 Property address As %String(MAXLEN = "");
 
-Property authorizationEndpoint As CONNECTORSPKG.ZorgAB.Api.Client.model.AuthorizationEndpoint;
+Property authorizationEndpoint As ZorgAB.Api.Client.model.AuthorizationEndpoint;
 
 Property className As %String(%JSONFIELDNAME = "_className", MAXLEN = "");
 
@@ -15,11 +15,11 @@ Property description As %String(MAXLEN = "");
 
 Property gegevensdienstId As %String(MAXLEN = "");
 
-Property interfaceversies As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Interfaceversie;
+Property interfaceversies As list Of ZorgAB.Api.Client.model.Interfaceversie;
 
-Property systeemrollen As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Systeemrol;
+Property systeemrollen As list Of ZorgAB.Api.Client.model.Systeemrol;
 
-Property tokenEndpoint As CONNECTORSPKG.ZorgAB.Api.Client.model.TokenEndpoint;
+Property tokenEndpoint As ZorgAB.Api.Client.model.TokenEndpoint;
 
 Property type As %String(MAXLEN = "");
 

@@ -1,9 +1,9 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.responses.worksAtidPATCH Extends CONNECTORSPKG.ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
+Class ZorgAB.Api.Client.responses.worksAtidPATCH Extends ZorgAB.Api.Client.responses.GenericResponse [ ProcedureBlock ]
 {
 
 /// http status code = 202 content-type = application/json
 /// Status 202
-Property WorksAt As CONNECTORSPKG.ZorgAB.Api.Client.model.WorksAt;
+Property WorksAt As ZorgAB.Api.Client.model.WorksAt;
 
 /// Implement operationId : worksAtidPATCH
 /// patch /worksAt/{id}
@@ -12,7 +12,7 @@ Method LoadFromResponse(httpResponse As %Net.HttpResponse, caller As %String = "
 	Set sc = $$$OK
 	Do ##super(httpResponse, caller)
 	If $$$LOWER($Piece(httpResponse.ContentType,";",1))="application/json",httpResponse.StatusCode = "202" {
-		Set ..WorksAt = ##class(CONNECTORSPKG.ZorgAB.Api.Client.model.WorksAt).%New()
+		Set ..WorksAt = ##class(ZorgAB.Api.Client.model.WorksAt).%New()
 		Set ..status = ..WorksAt.%JSONImport(httpResponse.Data)
 		Return sc
 	}

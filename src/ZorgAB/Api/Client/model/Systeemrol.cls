@@ -1,7 +1,7 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.Systeemrol Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.Systeemrol Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
-Property resourceEndpoint As CONNECTORSPKG.ZorgAB.Api.Client.model.ResourceEndpoint;
+Property resourceEndpoint As ZorgAB.Api.Client.model.ResourceEndpoint;
 
 Property systeemrolcode As %String(MAXLEN = "");
 

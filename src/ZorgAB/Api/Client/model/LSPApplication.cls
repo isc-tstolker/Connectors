@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.model.LSPApplication Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
+Class ZorgAB.Api.Client.model.LSPApplication Extends (%SerialObject, %JSON.Adaptor, %XML.Adaptor) [ Inheritance = left, ProcedureBlock ]
 {
 
 /// Deprecated. Supported until 31-12-2021
@@ -12,7 +12,7 @@ Property author As %String(MAXLEN = "");
 
 Property className As %String(%JSONFIELDNAME = "_className", MAXLEN = "");
 
-Property conformances As list Of CONNECTORSPKG.ZorgAB.Api.Client.model.Conformance;
+Property conformances As list Of ZorgAB.Api.Client.model.Conformance;
 
 Property description As %String(MAXLEN = "");
 

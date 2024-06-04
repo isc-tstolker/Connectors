@@ -1,4 +1,4 @@
-Class CONNECTORSPKG.ZorgAB.Api.Client.requests.individualsidnamesPOST Extends Ens.Request [ ProcedureBlock ]
+Class ZorgAB.Api.Client.requests.individualsidnamesPOST Extends Ens.Request [ ProcedureBlock ]
 {
 
 Parameter METHOD = "post";
@@ -12,7 +12,7 @@ Property %ContentType As %String(MAXLEN = "") [ InitialExpression = "application
 Property %URL As %String(MAXLEN = "") [ InitialExpression = {..#URL} ];
 
 /// Use this property for body content with content-type = application/json.
-Property IndividualNameInput As CONNECTORSPKG.ZorgAB.Api.Client.model.IndividualNameInput;
+Property IndividualNameInput As ZorgAB.Api.Client.model.IndividualNameInput;
 
 Property pathid As %String(MAXLEN = "");
 
