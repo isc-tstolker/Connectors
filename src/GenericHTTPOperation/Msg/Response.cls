@@ -1,5 +1,5 @@
 /// Generic Response Class
-Class CONNECTORSPKG.BO.GenericHTTP.Msg.Response Extends Ens.Response [ Inheritance = left, ProcedureBlock ]
+Class GenericHTTPOperation.Msg.Response Extends Ens.Response [ Inheritance = left, ProcedureBlock ]
 {
 
 Property Body As %Stream.GlobalCharacter;
@@ -53,7 +53,7 @@ Storage Default
 <Data name="Headers">
 <Attribute>Headers</Attribute>
 <Structure>subnode</Structure>
-<Subscript>"CONNECTORSPKG.BO.GenericHTTP.Msg.Response.Headers"</Subscript>
+<Subscript>"GenericHTTPOperation.Msg.Response.Headers"</Subscript>
 </Data>
 <DefaultData>GenericResponseDefaultData</DefaultData>
 <Type>%Storage.Persistent</Type>

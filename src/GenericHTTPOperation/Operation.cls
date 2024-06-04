@@ -1,10 +1,10 @@
 /// Generic HTTP Operation
-Class CONNECTORSPKG.BO.GenericHTTP.Operation Extends (Ens.BusinessOperation, HS.HC.Util.Trace.Helper)
+Class GenericHTTPOperation.Operation Extends (Ens.BusinessOperation, HS.HC.Util.Trace.Helper)
 {
 
-Parameter ADAPTER = "CONNECTORSPKG.BO.GenericHTTP.OutboundAdapter";
+Parameter ADAPTER = "GenericHTTPOperation.OutboundAdapter";
 
-Property Adapter As CONNECTORSPKG.BO.GenericHTTP.OutboundAdapter;
+Property Adapter As GenericHTTPOperation.OutboundAdapter;
 
 /// HTTP Method
 Property HttpMethod As %String(VALUELIST = ",GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS") [ InitialExpression = "GET" ];
@@ -25,9 +25,9 @@ Property CustomAuthorizationHeader As %String(MAXLEN = "");
 Parameter SETTINGS As STRING = "HttpMethod:Basic,AcceptHeader:Basic,ContentType:Basic,AuthorizationType:Basic,CustomAuthorizationHeader:Basic";
 
 /// Handle Generic HTTP request
-Method Handle(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, Output responseMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Response) As %Status
+Method Handle(requestMessage As GenericHTTPOperation.Msg.Request, Output responseMessage As GenericHTTPOperation.Msg.Response) As %Status
 {
-	set responseMessage = ##class(CONNECTORSPKG.BO.GenericHTTP.Msg.Response).%New()
+	set responseMessage = ##class(GenericHTTPOperation.Msg.Response).%New()
 	set sc = $$$OK, pHttpRequestIn = ##class(%Net.HttpRequest).%New()
 	$$$QuitOnError(requestMessage.LoadHttpRequestObject(pHttpRequestIn))
 
@@ -60,7 +60,7 @@ Method OnGetReplyAction(pRequest As %Library.Persistent, ByRef pResponse As %Lib
 {
 	if $$$ISOK(pSC)
 	{
-		#dim response as CONNECTORSPKG.BO.GenericHTTP.Msg.Response = pResponse
+		#dim response as GenericHTTPOperation.Msg.Response = pResponse
 		set sc = $$$ERROR(response.HttpStatusCode)
 		set action = ##super(pRequest, .pResponse, .sc)
 		$$$TRACE("HTTP Status = " _ response.HttpStatusCode _ "; reply code action = " _ action)
@@ -76,7 +76,7 @@ Method OnGetReplyAction(pRequest As %Library.Persistent, ByRef pResponse As %Lib
 
 /// Process Url Parameters
 /// Serach for positional parameters like Patient/{1}
-Method ProcessUrlParams(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, httpRequest As %Net.HttpRequest) As %String
+Method ProcessUrlParams(requestMessage As GenericHTTPOperation.Msg.Request, httpRequest As %Net.HttpRequest) As %String
 {
 	set url = ..Adapter.URL
 	
@@ -107,7 +107,7 @@ Method ProcessUrlParams(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Reque
 }
 
 /// Process headers
-Method ProcessHeaders(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request, httpRequest As %Net.HttpRequest) As %Status
+Method ProcessHeaders(requestMessage As GenericHTTPOperation.Msg.Request, httpRequest As %Net.HttpRequest) As %Status
 {
 	if (..AuthorizationType = "Bearer")
 	{
@@ -151,7 +151,7 @@ Method ProcessHeaders(requestMessage As CONNECTORSPKG.BO.GenericHTTP.Msg.Request
 XData MessageMap
 {
 <MapItems>
-	<MapItem MessageType="CONNECTORSPKG.BO.GenericHTTP.Msg.Request">
+	<MapItem MessageType="GenericHTTPOperation.Msg.Request">
 		<Method>Handle</Method>
 	</MapItem>
 </MapItems>

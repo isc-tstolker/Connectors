@@ -1,5 +1,5 @@
 /// Generic HTTP Request 
-Class CONNECTORSPKG.BO.GenericHTTP.Msg.Request Extends Ens.Request [ ProcedureBlock ]
+Class GenericHTTPOperation.Msg.Request Extends Ens.Request [ ProcedureBlock ]
 {
 
 /// Configure the number of parameters to process
@@ -56,7 +56,7 @@ Storage Default
 <Data name="Headers">
 <Attribute>Headers</Attribute>
 <Structure>subnode</Structure>
-<Subscript>"CONNECTORSPKG.BO.GenericHTTP.Msg.Request.Headers"</Subscript>
+<Subscript>"GenericHTTPOperation.Msg.Request.Headers"</Subscript>
 </Data>
 <Data name="RequestDefaultData">
 <Subscript>"Request"</Subscript>
@@ -136,7 +136,7 @@ Storage Default
 <Data name="UrlParams">
 <Attribute>UrlParams</Attribute>
 <Structure>subnode</Structure>
-<Subscript>"CONNECTORSPKG.BO.GenericHTTP.Msg.Request.UrlParams"</Subscript>
+<Subscript>"GenericHTTPOperation.Msg.Request.UrlParams"</Subscript>
 </Data>
 <DefaultData>RequestDefaultData</DefaultData>
 <Type>%Storage.Persistent</Type>
