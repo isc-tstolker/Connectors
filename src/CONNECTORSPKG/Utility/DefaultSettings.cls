@@ -37,14 +37,30 @@ ClassMethod ListProductions(print As %Boolean = 1, namespace As %String = {$NAME
     return production
 }
 
-/// Connectors action
-ClassMethod SettingsFromProduction(removeFromProduction As %Boolean = 0) As %Status
+/// Export to settingsfile
+ClassMethod Export() As %Status
 {
-    return ..GetSettingsFromProduction("CONNECTORSPKG.FoundationProduction", "*:HTTPServer,SSLConfig;CONNECTORSPKG.BO.GenericHTTP.Operation:HttpMethod,AcceptHeader,ContentType,URL,AuthorizationType,Credentials,CustomAuthorizationHeader,AlertOnError,ReplyCodeActions", removeFromProduction)
+    return ##class(Ens.Config.DefaultSettings).%Export("/home/irisowner/systemdefaults/Ens.Config.DefaultSettings.esd", "CONNECTORSPKG.FoundationProduction")
+}
+
+/// Export from settingsfile
+ClassMethod Import() As %Status
+{
+    set sc = ##class(Ens.Config.DefaultSettings).%Import("/home/irisowner/systemdefaults/Ens.Config.DefaultSettings.esd", .count, .idsimported)
+    
+    write "Imported ",count," settings",!
+
+    return sc
+}
+
+/// Connectors action
+ClassMethod SettingsFromProduction(removeFromProduction As %Boolean = 0, updateSettings As %Boolean = 1) As %Status
+{
+    return ..GetSettingsFromProduction("CONNECTORSPKG.FoundationProduction", "*:HTTPServer,SSLConfig;CONNECTORSPKG.BO.GenericHTTP.Operation:HttpMethod,AcceptHeader,ContentType,URL,AuthorizationType,Credentials,CustomAuthorizationHeader,AlertOnError,ReplyCodeActions", removeFromProduction, updateSettings)
 }
 
 /// Get settings From Production
-ClassMethod GetSettingsFromProduction(production As %String = {..ListProductions(0, $NAMESPACE)}, filter As %String = "", removeFromProduction As %Boolean = 0) As %Status
+ClassMethod GetSettingsFromProduction(production As %String = {..ListProductions(0, $NAMESPACE)}, filter As %String = "", removeFromProduction As %Boolean = 0, updateSettings As %Boolean = 1) As %Status
 {
     write "Settings in production '",production _ "':",!
     set xdataId = production _ "||ProductionDefinition"
@@ -100,7 +116,7 @@ ClassMethod GetSettingsFromProduction(production As %String = {..ListProductions
 
 		if (textreader.LocalName = "Setting")
 		{
-            do ..HandleXDataSetting(textreader, tProduction, currentItemName, currentItemClass, filter, removeFromProduction, .tRemovedItemCount)
+            do ..HandleXDataSetting(textreader, tProduction, currentItemName, currentItemClass, filter, removeFromProduction, updateSettings, .tRemovedItemCount)
         }
 	}
 
@@ -114,7 +130,7 @@ ClassMethod GetSettingsFromProduction(production As %String = {..ListProductions
 }
 
 /// Hanlde setting found in the XData 
-ClassMethod HandleXDataSetting(textreader As %XML.TextReader, tProduction As Ens.Config.Production, currentItemName As %String, currentItemClass As %String, filter As %String, removeFromProduction, ByRef tRemovedItemCount As %Integer)
+ClassMethod HandleXDataSetting(textreader As %XML.TextReader, tProduction As Ens.Config.Production, currentItemName As %String, currentItemClass As %String, filter As %String, removeFromProduction As %Boolean, updateSettings As %Boolean, ByRef tRemovedItemCount As %Integer)
 {
     if (textreader.MoveToAttributeName("Target"))
     {
@@ -131,7 +147,7 @@ ClassMethod HandleXDataSetting(textreader As %XML.TextReader, tProduction As Ens
     #; write "Found Setting Target=",target,", name=",name,", Value=",value,!
     if ..InFilter(filter, currentItemName, currentItemClass, target, name, value)
     {
-        if $$$ISERR(..HandleSetting(tProduction.Name, currentItemName, currentItemClass, target, name, value))
+        if updateSettings && $$$ISERR(..HandleSetting(tProduction.Name, currentItemName, currentItemClass, target, name, value))
         {
             return
         }
