@@ -1,4 +1,4 @@
-Include EnsConstants
+Include Ensemble
 
 /// Get Settings from Production and Create DefaultSettings
 Class CONNECTORSPKG.Utility.DefaultSettings
@@ -40,7 +40,7 @@ ClassMethod ListProductions(print As %Boolean = 1, namespace As %String = {$NAME
 /// Export to settingsfile
 ClassMethod Export() As %Status
 {
-    return ##class(Ens.Config.DefaultSettings).%Export("/home/irisowner/systemdefaults/Ens.Config.DefaultSettings.esd", "CONNECTORSPKG.FoundationProduction")
+    return ##class(Ens.Config.DefaultSettings).%Export(##class(%SYSTEM.Util).ManagerDirectory() _ "/Ens.Config.DefaultSettings.esd", "CONNECTORSPKG.FoundationProduction")
 }
 
 /// Export from settingsfile
@@ -53,10 +53,16 @@ ClassMethod Import() As %Status
     return sc
 }
 
-/// Connectors action
+/// Get settings from production helper
 ClassMethod SettingsFromProduction(removeFromProduction As %Boolean = 0, updateSettings As %Boolean = 1) As %Status
 {
     return ..GetSettingsFromProduction("CONNECTORSPKG.FoundationProduction", "*:HTTPServer,SSLConfig;GenericHTTPOperation.Operation:HttpMethod,AcceptHeader,ContentType,URL,AuthorizationType,Credentials,CustomAuthorizationHeader,AlertOnError,ReplyCodeActions", removeFromProduction, updateSettings)
+}
+
+/// Move settings into production helper
+ClassMethod SettingsToProduction(removeDefaultsetting As %Boolean = 0, updateProduction As %Boolean = 1) As %Status
+{
+    return ..MergeSettingsIntoProduction("CONNECTORSPKG.FoundationProduction", removeDefaultsetting, updateProduction)
 }
 
 /// Get settings From Production
@@ -286,29 +292,177 @@ ClassMethod HandleSetting(production As %String, item As %String, class As %Stri
     return sc
 }
 
-/// Rmove Setting from production
+/// Remove Setting from production
 ClassMethod RemoveSettingFromProduction(tProduction As Ens.Config.Production, item As %String, target As %String, varName As %String) As %Boolean
 {
-    #dim tItemObj as Ens.Config.Item = tProduction.FindItemByConfigName(item, .sc, 1)
+    #dim configItem as Ens.Config.Item = tProduction.FindItemByConfigName(item, .sc, 1)
 
-    if '$IsObject(tItemObj)
+    if '$IsObject(configItem)
     {
         write "Failed to get item '",item,"': ",$SYSTEM.Status.GetErrorText(sc),!
         return 0
     }
 
-	for i = 1:1:tItemObj.Settings.Count()
+	for i = 1:1:configItem.Settings.Count()
     {
-		#dim tSetting As Ens.Config.Setting = tItemObj.Settings.GetAt(i)
+		#dim tSetting As Ens.Config.Setting = configItem.Settings.GetAt(i)
 
 		if (tSetting.Name = varName) && (tSetting.Target = target)
         {
-            do tItemObj.Settings.RemoveAt(i, .success)
+            do configItem.Settings.RemoveAt(i, .success)
             return success
 		}
 	}
 
     return 0
+}
+
+/// Get settings From Production
+ClassMethod MergeSettingsIntoProduction(production As %String = {..ListProductions(0, $NAMESPACE)}, removeDefaultsetting As %Boolean = 0, updateProduction As %Boolean = 1) As %Status
+{
+    write "Merge settings into production '",production _ "':",!
+	set tSC = $$$OK
+    set tProduction = ##class(Ens.Config.Production).%OpenId(production,,.sc)
+
+    if $$$ISERR(sc)
+    {
+        write "Failed to open production '",production,"': ",$SYSTEM.Status.GetErrorText(sc),"; settings will not merged into the production",!
+        return sc
+    }
+
+    // Find the current Default settings (for this / all productions)
+    set result = ##class(%SQL.Statement).%ExecDirect(, "SELECT ID FROM Ens_Config.DefaultSettings WHERE (PRODUCTIONNAME IS NULL) OR (PRODUCTIONNAME = ?)", production)
+    set tUpdatedItemCount = 0
+    set tDeletedItemCount = 0
+
+    while result.%Next()
+    {
+        #dim tItem as Ens.Config.DefaultSettings = ##class(Ens.Config.DefaultSettings).%OpenId(result.%Get("ID"))
+
+        if '$IsObject(tItem)
+        {
+            continue
+        }
+
+        #; write "Production=",tItem.ProductionName,"; Item=",tItem.ItemName,"; Class=",tItem.HostClassName,"; ",tItem.SettingName,"=",tItem.SettingValue,!
+
+        if updateProduction
+        {
+            if ..UpdateSettingInProduction(tProduction, tItem)
+            {
+                set tUpdatedItemCount = tUpdatedItemCount + 1
+            }
+        }
+
+        if removeDefaultsetting
+        {
+            set sc = ##class(Ens.Config.DefaultSettings).%DeleteId(result.%Get("ID"))        
+
+            if $$$ISERR(sc)
+            {
+                write "Failed to delete System Default setting for Item ",tItem.ItemName," named ",tItem.SettingName,": ",$SYSTEM.Status.GetErrorText(sc),"; settings will not merged into the production",!
+            }
+            else
+            {
+                set tDeletedItemCount = tDeletedItemCount + 1
+            }
+        }
+    }
+
+    if tDeletedItemCount > 0
+    {
+        write "Deleted ",tDeletedItemCount," settings",!
+    }
+
+    if tUpdatedItemCount > 0
+    {
+        write "Updated ",tUpdatedItemCount," settings; now saving Production '",production,"':"
+        return ..SaveProduction(tProduction)
+    }
+
+    return tSC
+}
+
+/// Create or Update setting in production
+ClassMethod UpdateSettingInProduction(tProduction As Ens.Config.Production, tItem As Ens.Config.DefaultSettings) As %Boolean
+{
+    #dim configItem as Ens.Config.Item = tProduction.FindItemByConfigName(tItem.ItemName, .sc, 1)
+
+    if '$IsObject(configItem)
+    {
+        write "Failed to get item '",tItem.ItemName,"': ",$SYSTEM.Status.GetErrorText(sc),!
+        return 0
+    }
+
+    #; do ##class(Ens.Production).ApplySettings(<productionName>, .pSettings)
+
+    #dim tSetting As Ens.Config.Setting = configItem.FindSettingByName(tItem.SettingName)
+
+    if '$ISOBJECT(tSetting)
+    {
+        set tSetting = ##CLASS(Ens.Config.Setting).%New()
+        set tSetting.Name = tItem.SettingName
+        set tSetting.Target = ..DetermineTarget(tItem)
+
+        write "Created Production Setting for Item=",tItem.ItemName,"; Target=",tSetting.Target,"; ",tItem.SettingName,"=",tItem.SettingValue,!
+        do configItem.Settings.Insert(tSetting)
+    }
+    else
+    {
+        write "Ppdated Production Setting for Item=",tItem.ItemName,"; Target=",tSetting.Target,"; ",tItem.SettingName,"=",tItem.SettingValue,!
+    }
+    
+    // We can finally set the setting
+    set tSetting.Value = tItem.SettingValue
+
+    return 1
+}
+
+/// Determine Target for setting
+ClassMethod DetermineTarget(tItem As Ens.Config.DefaultSettings) As %String
+{
+    set hostClassName = tItem.HostClassName
+    set target = ""
+
+    if (hostClassName '= "*") && (hostClassName '= "")
+    {
+        if ..IsSettingInClass(hostClassName, tItem.SettingName)
+        {
+            set target = "Host"
+        }
+        else
+        {
+            set adapterClass = $parameter(hostClassName, "ADAPTER")
+
+            if (adapterClass '= "") && ..IsSettingInClass(adapterClass, tItem.SettingName)
+            {
+                set target = "Adapter"
+            }
+        }
+    }
+
+    return target
+}
+
+/// Is this setting in the specified class?
+ClassMethod IsSettingInClass(pClassname As %String, pSettingName As %String) As %Boolean
+{
+	#dim rs as %ResultSet = ##class(%ResultSet).%New()
+	set rs.ClassName = pClassname
+	set rs.QueryName = "EnumerateSettings"
+
+	if rs.QueryIsValid() && $$$ISOK(rs.Execute())
+    {
+        while rs.Next()
+        {
+            if rs.Data("Name")=pSettingName
+            {
+                return 1
+            }
+        }
+    }
+
+	return 0
 }
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+	<Document name="generic-http-operation.ZPM">
+		<Module>
+			<Name>generic-http-operationg</Name>
+			<Version>1.0.9</Version>
+			<Description>A generic HTTP Operation that allows simplified configuration</Description>
+			<Keywords>HTTP,Interop</Keywords>
+			<Packaging>module</Packaging>
+			<Resource Name="GenericHTTPOperation.PKG"/>
+			<SourcesRoot>src</SourcesRoot>
+			<Invokes>
+				<Invoke Class="CONNECTORSPKG.Setup.installer" Method="PostInstall" Phase="Activate" When="After"/>
+			</Invokes>
+		</Module>
+	</Document>
+</Export>
