@@ -250,16 +250,8 @@ ClassMethod InFilter(filter As %String, itemName As %String, class As %String, t
 /// Handle Setting
 ClassMethod HandleSetting(production As %String, item As %String, class As %String, target As %String, varName As %String, value As %String) As %Status
 {
-	if ##class(Ens.Config.DefaultSettings).IdKeyExists(production, item, class, varName, .id)
+	if ..FindSystemDefaulSetting(production, item, class, varName, .defaultSetting) 
 	{
-		set defaultSetting = ##class(Ens.Config.DefaultSettings).%OpenId(id, , .sc)
-
-		if $$$ISERR(sc)
-		{
-            write "Failed to get default setting named '",item,":",varName,"': ",$SYSTEM.Status.GetErrorText(sc),!
-			return sc
-		}
-
         if defaultSetting.SettingValue = value
         {            
             write "Skipping '",item,":",varName,"' as it already exists with the same value",!
@@ -273,11 +265,11 @@ ClassMethod HandleSetting(production As %String, item As %String, class As %Stri
         set defaultSetting = ##class(Ens.Config.DefaultSettings).%New()
         set defaultSetting.ProductionName = production
         set defaultSetting.ItemName = item
-        set defaultSetting.HostClassName = class
+        set defaultSetting.HostClassName = "*"
         set defaultSetting.SettingName = varName
         set defaultSetting.Deployable = 1
 
-        write "Creating '",item,":",varName,"' from '",defaultSetting.SettingValue,"' with value '",value,"'",!
+        write "Creating '",item,":",varName," with value '",value,"'",!
     }
 
     set defaultSetting.SettingValue = value
@@ -290,6 +282,31 @@ ClassMethod HandleSetting(production As %String, item As %String, class As %Stri
     }
 
     return sc
+}
+
+/// Find System Default setting for Production, Item and Setting name
+ClassMethod FindSystemDefaulSetting(productionName As %String, itemName As %String, className As %String, settingName As %String, Output defaultSetting As Ens.Config.DefaultSettings) As %Boolean
+{
+    set result = ##class(%SQL.Statement).%ExecDirect(, "SELECT ID FROM Ens_Config.DefaultSettings WHERE (PRODUCTIONNAME = ?) AND (ItemName = ?) AND (SettingName = ?)",
+                                                         productionName, itemName, settingName)
+    #dim tempSetting as Ens.Config.DefaultSettings = ""
+    set defaultSetting = ""
+
+    while result.%Next()
+    {
+        set id = result.%Get("ID")
+        set tempSetting = ##class(Ens.Config.DefaultSettings).%OpenId(id)
+
+        if ((tempSetting.HostClassName = "*") || (tempSetting.HostClassName = className))
+        {
+            set defaultSetting = tempSetting
+            continue
+        }
+
+        write "Found setting with mismatching class name '",tempSetting.HostClassName,"', please fix the Host Class Name if you want to use it",!
+    }
+
+    return $ISOBJECT(defaultSetting)
 }
 
 /// Remove Setting from production
@@ -337,18 +354,18 @@ ClassMethod MergeSettingsIntoProduction(production As %String = {..ListProductio
 
     while result.%Next()
     {
-        #dim tItem as Ens.Config.DefaultSettings = ##class(Ens.Config.DefaultSettings).%OpenId(result.%Get("ID"))
+        #dim defaultSetting as Ens.Config.DefaultSettings = ##class(Ens.Config.DefaultSettings).%OpenId(result.%Get("ID"))
 
-        if '$IsObject(tItem)
+        if '$IsObject(defaultSetting)
         {
             continue
         }
 
-        #; write "Production=",tItem.ProductionName,"; Item=",tItem.ItemName,"; Class=",tItem.HostClassName,"; ",tItem.SettingName,"=",tItem.SettingValue,!
+        #; write "Production=",defaultSetting.ProductionName,"; Item=",defaultSetting.ItemName,"; defaultSetting.SettingName,"=",defaultSetting.SettingValue,!
 
         if updateProduction
         {
-            if ..UpdateSettingInProduction(tProduction, tItem)
+            if ..UpdateSettingInProduction(tProduction, defaultSetting)
             {
                 set tUpdatedItemCount = tUpdatedItemCount + 1
             }
@@ -360,7 +377,7 @@ ClassMethod MergeSettingsIntoProduction(production As %String = {..ListProductio
 
             if $$$ISERR(sc)
             {
-                write "Failed to delete System Default setting for Item ",tItem.ItemName," named ",tItem.SettingName,": ",$SYSTEM.Status.GetErrorText(sc),"; settings will not merged into the production",!
+                write "Failed to delete System Default setting for Item ",defaultSetting.ItemName," named ",defaultSetting.SettingName,": ",$SYSTEM.Status.GetErrorText(sc),"; settings will not merged into the production",!
             }
             else
             {
@@ -384,57 +401,65 @@ ClassMethod MergeSettingsIntoProduction(production As %String = {..ListProductio
 }
 
 /// Create or Update setting in production
-ClassMethod UpdateSettingInProduction(tProduction As Ens.Config.Production, tItem As Ens.Config.DefaultSettings) As %Boolean
+ClassMethod UpdateSettingInProduction(tProduction As Ens.Config.Production, defaultSetting As Ens.Config.DefaultSettings) As %Boolean
 {
-    #dim configItem as Ens.Config.Item = tProduction.FindItemByConfigName(tItem.ItemName, .sc, 1)
+    #dim configItem as Ens.Config.Item = tProduction.FindItemByConfigName(defaultSetting.ItemName, .sc, 1)
 
     if '$IsObject(configItem)
     {
-        write "Failed to get item '",tItem.ItemName,"': ",$SYSTEM.Status.GetErrorText(sc),!
+        write "No Production Item named '",defaultSetting.ItemName,"' found: ",$SYSTEM.Status.GetErrorText(sc),!
         return 0
     }
 
-    #; do ##class(Ens.Production).ApplySettings(<productionName>, .pSettings)
+    set target = ..DetermineTarget(configItem.ClassName, defaultSetting.SettingName) // search with current Item ClassName!
 
-    #dim tSetting As Ens.Config.Setting = configItem.FindSettingByName(tItem.SettingName)
+    if (target = "")
+    {
+        write "Production Setting for Item=",defaultSetting.ItemName,"Setting=",defaultSetting.SettingName,": No matching setting found in either Host or Adapter",!
+        return 0
+    }
+
+    #dim tSetting As Ens.Config.Setting = configItem.FindSettingByName(defaultSetting.SettingName)
 
     if '$ISOBJECT(tSetting)
     {
         set tSetting = ##CLASS(Ens.Config.Setting).%New()
-        set tSetting.Name = tItem.SettingName
-        set tSetting.Target = ..DetermineTarget(tItem)
-
-        write "Created Production Setting for Item=",tItem.ItemName,"; Target=",tSetting.Target,"; ",tItem.SettingName,"=",tItem.SettingValue,!
+        set tSetting.Name = defaultSetting.SettingName
         do configItem.Settings.Insert(tSetting)
+        write "Created Production Setting for Item=",defaultSetting.ItemName,"; Target=",tSetting.Target,"; ",defaultSetting.SettingName,"=",defaultSetting.SettingValue,!
+    }
+    elseif (tSetting.Value '= defaultSetting.SettingValue) || (tSetting.Target '= target)
+    {
+        write "Updated Production Setting for Item=",defaultSetting.ItemName,"; Target=",tSetting.Target,"; ",defaultSetting.SettingName,"=",defaultSetting.SettingValue,!
     }
     else
     {
-        write "Ppdated Production Setting for Item=",tItem.ItemName,"; Target=",tSetting.Target,"; ",tItem.SettingName,"=",tItem.SettingValue,!
+        write "Production Setting for Item=",defaultSetting.ItemName,"; Target=",tSetting.Target,"; Setting ",defaultSetting.SettingName," already exists with the proper values",!
     }
     
     // We can finally set the setting
-    set tSetting.Value = tItem.SettingValue
+    set tSetting.Target = target
+    set tSetting.Value = defaultSetting.SettingValue
 
     return 1
 }
 
 /// Determine Target for setting
-ClassMethod DetermineTarget(tItem As Ens.Config.DefaultSettings) As %String
+ClassMethod DetermineTarget(className As %String, settingName As %String) As %String
 {
-    set hostClassName = tItem.HostClassName
     set target = ""
 
-    if (hostClassName '= "*") && (hostClassName '= "")
+    if (className '= "*") && (className '= "")
     {
-        if ..IsSettingInClass(hostClassName, tItem.SettingName)
+        if ..IsSettingInClass(className, settingName)
         {
             set target = "Host"
         }
         else
         {
-            set adapterClass = $parameter(hostClassName, "ADAPTER")
+            set adapterClass = $parameter(className, "ADAPTER")
 
-            if (adapterClass '= "") && ..IsSettingInClass(adapterClass, tItem.SettingName)
+            if (adapterClass '= "") && ..IsSettingInClass(adapterClass, settingName)
             {
                 set target = "Adapter"
             }
