@@ -434,7 +434,7 @@ ClassMethod UpdateSettingInProduction(tProduction As Ens.Config.Production, defa
     }
     else
     {
-        write "Production Setting for Item=",defaultSetting.ItemName,"; Target=",tSetting.Target,"; Setting ",defaultSetting.SettingName," already exists with the proper values",!
+        write "Skipped Production Setting for Item=",defaultSetting.ItemName,"; Target=",tSetting.Target,"; Setting ",defaultSetting.SettingName," as it already exists with the same value",!
     }
     
     // We can finally set the setting
