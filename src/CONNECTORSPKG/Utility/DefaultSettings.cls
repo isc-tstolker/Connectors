@@ -65,6 +65,111 @@ ClassMethod SettingsToProduction(removeDefaultsetting As %Boolean = 0, updatePro
     return ..MergeSettingsIntoProduction("CONNECTORSPKG.FoundationProduction", removeDefaultsetting, updateProduction)
 }
 
+/// Validate Default settings for explicit productions and issue warnings for issues
+/// Return the number of warnings found
+ClassMethod Validate() As %Integer
+{
+    set nWarnings = 0
+    // Get all System Default Settings
+    set result = ##class(%SQL.Statement).%ExecDirect(, "SELECT ID FROM Ens_Config.DefaultSettings WHERE PRODUCTIONNAME <> '*'")
+
+    if result.%SQLCODE < 0
+    {
+        throw ##class(%Exception.SQL).CreateFromSQLCODE(result.%SQLCODE, result.%Message)
+    }
+
+    while result.%Next() // For each row
+    {
+        set nWarnings = nWarnings + ..ValidateSetting(##class(Ens.Config.DefaultSettings).%OpenId(result.%Get("ID")))
+    }
+
+    write "Found ",nWarnings," warnings"
+    return nWarnings
+}
+
+/// Description
+ClassMethod ValidateSetting(defaultSetting As Ens.Config.DefaultSettings) As %Integer
+{
+    set tProduction = ##class(Ens.Config.Production).%OpenId(defaultSetting.ProductionName, , .sc)
+
+    if $$$ISERR(sc)
+    {
+        write "Production '",defaultSetting.ProductionName,"' cannot be found",!
+        return 1
+    }
+
+    set nWarnings = 0
+
+    if defaultSetting.ItemName '= "*" // Voor settings met een expliciete ItemName
+    {
+        #dim configItem as Ens.Config.Item = tProduction.FindItemByConfigName(defaultSetting.ItemName, .sc) // Bestaat deze item?
+
+        if $$$ISERR(sc)
+        {
+            write "No item found with name '",defaultSetting.ItemName,"' in production '",defaultSetting.ProductionName,"'",!
+            return 1
+        }
+
+        #; Bestaat de SettingName in de betreffende Item Class?
+        set target = ..DetermineTarget(configItem.ClassName, defaultSetting.SettingName) // search with current Item ClassName!
+
+        if (target = "")
+        {
+            write "Setting '",defaultSetting.SettingName,"' for Item '",defaultSetting.ItemName,"' in production '",defaultSetting.ProductionName,"; No matching setting found in either Host or Adapter",!
+            set nWarnings = nWarnings + 1
+        }
+
+        if (defaultSetting.HostClassName '= "*") && (defaultSetting.HostClassName '= configItem.ClassName) 
+        {
+            write "Host Class name '",defaultSetting.HostClassName,"' is incorrect for Item '",defaultSetting.ItemName,"' in production '",defaultSetting.ProductionName,"'; expected '",configItem.ClassName,"'",!
+            set nWarnings = nWarnings + 1
+        }
+    }
+    elseif defaultSetting.HostClassName '= "*" // Anders, indien  wel een expliciete Class:
+    {
+        #; Bestaat deze class?
+        if '##class(%Dictionary.CompiledClass).%ExistsId(defaultSetting.HostClassName)
+        {
+            write "Invalid Host Class name '",defaultSetting.HostClassName,"' in production '",defaultSetting.ProductionName,"'",!
+            return 1
+        }
+
+        #; Bestaat er een item met deze class in the production?
+        if '..ItemWithHostClassNameExistsInProduction(tProduction, defaultSetting.HostClassName)
+        {
+            write "No matching Items exists for Host Class '",defaultSetting.HostClassName,"' in production '",defaultSetting.ProductionName,"'",!
+            set nWarnings = nWarnings + 1
+        }
+
+        #; Bestaat de SettingName in de betreffende Class?
+        set target = ..DetermineTarget(defaultSetting.HostClassName, defaultSetting.SettingName)
+
+        if (target = "")
+        {
+            write "Setting '",defaultSetting.SettingName,"' for Class '",defaultSetting.HostClassName,"' in production '",defaultSetting.ProductionName,"': No matching setting found in either Host or Adapter",!
+            set nWarnings = nWarnings + 1
+        }
+    }
+
+    return nWarnings
+}
+
+/// Is there an Item with the specified Host Class Name in the production?
+ClassMethod ItemWithHostClassNameExistsInProduction(pProduction As Ens.Config.Production, hostClassName As %String) As %Boolean
+{
+	for i = 1:1:pProduction.Items.Count()
+    {
+		#dim configItem as Ens.Config.Item = pProduction.Items.GetAt(i)
+
+        if (configItem.ClassName = hostClassName)
+        {
+            return 1
+        }
+    }
+
+    return 0
+}
+
 /// Get settings From Production
 ClassMethod GetSettingsFromProduction(production As %String = {..ListProductions(0, $NAMESPACE)}, filter As %String = "", removeFromProduction As %Boolean = 0, updateSettings As %Boolean = 1) As %Status
 {
